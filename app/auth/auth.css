@@ -1,15 +1,12 @@
-.max-width-350 {
-    max-width: 350px;
+.max-width-450 {
+    max-width: 450px;
 }
 .wrap {
-    padding: 2em 2em 2em 2em;
+    padding: 3em 4em 2em 4em;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
 }
 .full-wrap {
     background-image: url("https://images.unsplash.com/photo-1574169208507-84376144848b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=579&q=80");

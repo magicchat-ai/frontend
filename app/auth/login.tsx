@@ -11,7 +11,7 @@ function handleLogin() {
 
 const login = (props: PropsType) => {
     return (
-        <div className="flex wrap max-width-350 bg-white py-4 px-8 my-4 rounded-lg">
+        <div className="flex wrap max-width-450 bg-white px-8 rounded-lg justify-center self-center flex-col">
             <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight text-black-700"> 
                 Sign in to your account 
             </h1>
@@ -53,7 +53,7 @@ const login = (props: PropsType) => {
 
             <div className="text-sm py-4 px-0.5">
                 Don&apos;t have an account?
-                <a href="#" className="font-bold"> Signup for free </a>
+                <a href="#" onClick={() => props.setLoginUseState(false)} className="font-bold"> Signup for free </a>
             </div>
         </div>
     )
