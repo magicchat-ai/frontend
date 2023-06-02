@@ -96,7 +96,7 @@ export default function Home() {
                       <article className="relative w-[560px] h-[352px] cursor-pointer mr-6">
                         <a href="#" className="pointer-events-none select-none">
                           <figure className="relative w-full h-full overflow-hidden rounded-3xl bg-neutrals-opaque-13">
-                            <video className="object-cover w-full h-full" src="https://res.cloudinary.com/glide/video/upload/w_1224/v1679490972/glideapps.com/homepage/2023/1.1%20Apps%20anywhere%20%282023-03-22%29_med.mp4" playsinline="" poster="https://images.ctfassets.net/n3rcstr5ldte/1ulbYM9Qi8Ez10FwkMa6P7/13b37e0f0abb74f1f9bc08f9ca206da7/apps-that-work-anywhere.jpg">
+                            <video className="object-cover w-full h-full" src="https://res.cloudinary.com/glide/video/upload/w_1224/v1679490972/glideapps.com/homepage/2023/1.1%20Apps%20anywhere%20%282023-03-22%29_med.mp4" poster="https://images.ctfassets.net/n3rcstr5ldte/1ulbYM9Qi8Ez10FwkMa6P7/13b37e0f0abb74f1f9bc08f9ca206da7/apps-that-work-anywhere.jpg">
                             </video>
                           </figure>
                           <div className="absolute bottom-5 left-5">
@@ -112,7 +112,7 @@ export default function Home() {
                       <article className="relative w-[590px] h-[352px] cursor-pointer mr-6">
                         <a href="#" className="pointer-events-none select-none">
                           <figure className="relative w-full h-full overflow-hidden rounded-3xl bg-neutrals-opaque-13">
-                            <video className="object-cover w-full h-full" src="https://res.cloudinary.com/glide/video/upload/w_1224/v1679993537/glideapps.com/homepage/2023/4%20Data%20sources%20that%20sync%20and%20scale%20-%20STATIC%203x%2060fps_med.mp4" autoplay="" loop="" playsinline="" poster="https://images.ctfassets.net/n3rcstr5ldte/76TRrU7tNttLXnwnezigyE/5b4f25e555c9f8f7a99d9532ba55feda/data-sources-that-sync-and-scale.jpg">
+                            <video className="object-cover w-full h-full" src="https://res.cloudinary.com/glide/video/upload/w_1224/v1679993537/glideapps.com/homepage/2023/4%20Data%20sources%20that%20sync%20and%20scale%20-%20STATIC%203x%2060fps_med.mp4" poster="https://images.ctfassets.net/n3rcstr5ldte/76TRrU7tNttLXnwnezigyE/5b4f25e555c9f8f7a99d9532ba55feda/data-sources-that-sync-and-scale.jpg">
                             </video>
                           </figure>
                           <div className="absolute bottom-5 left-5">
