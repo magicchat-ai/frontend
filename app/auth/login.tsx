@@ -12,7 +12,7 @@ function handleLogin() {
 const login = (props: PropsType) => {
     return (
         <div className="flex wrap max-width-450 bg-white px-8 rounded-lg justify-center self-center flex-col">
-            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight text-black-700"> 
+            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight text-black font-bold dark:text-black"> 
                 Sign in to your account 
             </h1>
 
@@ -51,7 +51,7 @@ const login = (props: PropsType) => {
                 </form>
             </div>
 
-            <div className="text-sm py-4 px-0.5">
+            <div className="text-sm py-4 px-0.5 text-black">
                 Don&apos;t have an account?
                 <a href="#" onClick={() => props.setLoginUseState(false)} className="font-bold"> Signup for free </a>
             </div>

@@ -12,7 +12,7 @@ function handleSignup() {
 const signup = (props: PropsType) => {
     return (
         <div className="flex wrap max-width-450 bg-white px-8 rounded-lg justify-center self-center flex-col">
-            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight text-black-700"> 
+            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight text-black font-bold dark:text-bold"> 
                 Create an account 
             </h1>
 
@@ -58,7 +58,7 @@ const signup = (props: PropsType) => {
                 </form>
             </div>
 
-            <div className="text-sm py-4 px-0.5 justify-center self-center flex flex-row gap-x-2">
+            <div className="text-sm py-4 px-0.5 justify-center self-center flex flex-row gap-x-2 text-black dark:text-black">
                 Already have an account?
                 <a href="#" onClick={() => props.setLoginUseState(true)} className="font-bold"> Log in </a>
             </div>

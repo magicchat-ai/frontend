@@ -15,7 +15,7 @@ export default function Auth() {
     const [loginUseState, setLoginUseState] = React.useState(true)
 
     return (
-        <div className='flex bg-white h-full w-full full-wrap flex-col self-center justify-center align-items-center'>
+        <div className='flex bg-white h-full overflow-hidden w-full full-wrap flex-col self-center justify-center align-items-center'>
             {
                 loginUseState &&
                 <Login 
