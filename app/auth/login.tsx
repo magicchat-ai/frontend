@@ -5,7 +5,9 @@ type PropsType = {
     loginUseState: boolean,
     setLoginUseState: React.Dispatch<React.SetStateAction<boolean>>
 }
-function handleLogin() {
+
+function handleLogin(event: any) {
+    event.preventDefault()
     // do something
 }
 
