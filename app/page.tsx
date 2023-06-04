@@ -49,6 +49,7 @@ export default function Home() {
 							>
 								<span className="sr-only">Open menu</span>
 								<svg
+									data-role="open-menu"
 									width="20"
 									height="12"
 									fill="none"
@@ -64,7 +65,7 @@ export default function Home() {
 						<nav className="hidden ml-4 xl:ml-0 md:flex md:flex-1 justify-end gap-x-2 px-2">
 							<div className="relative" data-headlessui-state="">
 								<button
-									className="text-white hover:bg-white md:inline-flex hidden items-center whitespace-nowrap text-sm font-normal focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
+									className="text-white hover:bg-white md:inline-flex hidden items-center whitespace-nowrap text-sm font-medium focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
 									type="button"
 									aria-expanded="false"
 									data-headlessui-state=""
@@ -74,7 +75,7 @@ export default function Home() {
 								</button>
 							</div>
 							<a href="/about">
-								<div className="text-white hover:bg-white text-sm font-normal hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition flex items-center cursor-pointer">
+								<div className="text-white hover:bg-white text-sm font-medium hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition flex items-center cursor-pointer">
 									about
 								</div>
 							</a>
@@ -83,7 +84,7 @@ export default function Home() {
 								data-headlessui-state=""
 							>
 								<button
-									className="text-white hover:bg-white md:inline-flex hidden items-center text-sm font-normal focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
+									className="text-white hover:bg-white md:inline-flex hidden items-center text-sm font-medium focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
 									type="button"
 									aria-expanded="false"
 									data-headlessui-state=""
@@ -134,7 +135,7 @@ export default function Home() {
 												href="/auth"
 												target="_blank"
 												rel="noopener noreferrer"
-												className="bg-[#18BED4] text-md lg:text-btn h-11 px-5 font-semibold bg-teal-8 hover:bg-teal-9 text-white focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full"
+												className="bg-white text-md lg:text-btn h-11 px-5 font-semibold bg-teal-8 hover:bg-teal-9 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full hover:bg-[#c7c7c7]"
 											>
 												Start talking
 											</a>
