@@ -96,7 +96,7 @@ export default function Home() {
 						</nav>
 						<div className="items-center justify-end hidden space-x-3 md:flex lg:flex-1 lg:w-0 flex-nowrap">
 							<a
-								href="https://go.glideapps.com?signUp"
+								href="/auth"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="font-semibold text-sm px-4 h-10 bg-teal-8 hover:bg-teal-9 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full bg-white hover:bg-opacity-90"
@@ -456,22 +456,26 @@ export default function Home() {
 						<h2 className="flex text-4xl font-bold w-80">
 							characters you love are just a chat away
 						</h2>
-						<button className="flex px-8 py-4 text-white text-md bg-black rounded-md max-w-max flex-row gap-x-2 justify-center items-center hover:bg-[#1e1e1e]">
-							Start today
-							<svg
-								className="flex"
-								width="15"
-								height="15"
-								viewBox="0 0 20 19"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M19.058 1.99834C19.0571 1.17086 18.384 0.500811 17.5546 0.501753L4.03934 0.517092C3.20998 0.518033 2.5384 1.18961 2.53934 2.01709C2.54028 2.84458 3.21338 3.51463 4.04274 3.51368L16.0563 3.50005L16.07 15.4864C16.0709 16.3139 16.744 16.9839 17.5734 16.983C18.4027 16.9821 19.0743 16.3105 19.0734 15.483L19.058 1.99834ZM3.06307 18.6146L18.6194 3.0583L16.4933 0.941798L0.936935 16.4981L3.06307 18.6146Z"
-									fill="white"
-								/>
-							</svg>
-						</button>
+						<a href="/auth" 
+							target="_blank"
+							rel="noopener noreferrer">
+							<button className="flex px-8 py-4 text-white text-md bg-black rounded-md max-w-max flex-row gap-x-2 justify-center items-center hover:bg-[#1e1e1e]">
+								Start today
+								<svg
+									className="flex"
+									width="15"
+									height="15"
+									viewBox="0 0 20 19"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M19.058 1.99834C19.0571 1.17086 18.384 0.500811 17.5546 0.501753L4.03934 0.517092C3.20998 0.518033 2.5384 1.18961 2.53934 2.01709C2.54028 2.84458 3.21338 3.51463 4.04274 3.51368L16.0563 3.50005L16.07 15.4864C16.0709 16.3139 16.744 16.9839 17.5734 16.983C18.4027 16.9821 19.0743 16.3105 19.0734 15.483L19.058 1.99834ZM3.06307 18.6146L18.6194 3.0583L16.4933 0.941798L0.936935 16.4981L3.06307 18.6146Z"
+										fill="white"
+									/>
+								</svg>
+							</button>
+						</a>
 					</div>
 					<div className="flex flex-row">
 						<Image

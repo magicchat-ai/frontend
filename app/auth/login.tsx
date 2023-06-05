@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useRouter } from 'next/navigation';
 import './auth.css'
 
 type PropsType = {
@@ -6,12 +7,16 @@ type PropsType = {
     setLoginUseState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function handleLogin(event: any) {
-    event.preventDefault()
-    // do something
-}
+const Login = (props: PropsType) => {
+    const router = useRouter()
 
-const login = (props: PropsType) => {
+    function handleLogin(event: any) {
+        event.preventDefault()
+        event.target.setAttribute("disabled", "true")
+
+        router.push("/dashboard")
+    }
+
     return (
         <div className="flex wrap max-width-450 bg-white px-8 rounded-lg justify-center self-center flex-col">
             <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight text-black font-bold dark:text-black"> 
@@ -61,4 +66,4 @@ const login = (props: PropsType) => {
     )
 }
 
-export default login
+export default Login

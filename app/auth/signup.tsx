@@ -1,15 +1,22 @@
 import * as React from 'react'
+import { useRouter } from 'next/navigation';
 
 type PropsType = {
     loginUseState: boolean,
     setLoginUseState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function handleSignup() {
+const Signup = (props: PropsType) => {
 
-}
+    const router = useRouter()
 
-const signup = (props: PropsType) => {
+    function handleSignup(event: any) {
+        event.preventDefault()
+        event.target.setAttribute("disabled", "true")
+
+        router.push("/dashboard")
+    }
+
     return (
         <div className="flex wrap max-width-450 bg-white px-8 rounded-lg justify-center self-center flex-col">
             <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight text-black font-bold dark:text-bold"> 
@@ -65,4 +72,4 @@ const signup = (props: PropsType) => {
         </div>
     )
 }
-export default signup
+export default Signup
