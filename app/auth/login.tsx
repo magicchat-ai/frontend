@@ -13,6 +13,7 @@ const Login = (props: PropsType) => {
     function handleLogin(event: any) {
         event.preventDefault()
         event.target.setAttribute("disabled", "true")
+        event.target.style.backgroundColor = "rgb(150, 150, 150)"
 
         router.push("/dashboard")
     }
@@ -50,6 +51,7 @@ const Login = (props: PropsType) => {
                     </div>
                     <div>
                         <button 
+                            onClick={handleLogin}
                             type="submit"
                             className="login-button flex bg-black items-center justify-center px-5 py-3 text-base font-medium text-center bg-white-700">
                             Login 

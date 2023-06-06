@@ -13,6 +13,7 @@ const Signup = (props: PropsType) => {
     function handleSignup(event: any) {
         event.preventDefault()
         event.target.setAttribute("disabled", "true")
+        event.target.style.backgroundColor = "rgb(150, 150, 150)"
 
         router.push("/dashboard")
     }
@@ -58,6 +59,7 @@ const Signup = (props: PropsType) => {
                     <div>
                         <button 
                             type="submit"
+                            onClick={handleSignup}
                             className="login-button flex bg-black items-center justify-center px-5 py-3 text-base font-medium text-center bg-white-700">
                             Sign up 
                         </button>

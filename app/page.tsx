@@ -1,7 +1,7 @@
 // Landing Page
 
 import Image from 'next/image'
-import SantaSmilingImage from "./assets/santa_landing.png"
+import SantaSmilingImage from "../public/assets/santa_landing.png"
 import Footer from './dashboard/footer'
 
 export default function Home() {
@@ -21,8 +21,8 @@ export default function Home() {
 										xmlns="http://www.w3.org/2000/svg"
 									>
 										<path
-											fill-rule="evenodd"
-											clip-rule="evenodd"
+											fillRule="evenodd"
+											clipRule="evenodd"
 											d="M10.6057 1.59058C6.64738 3.68132 -2.54608 16.3018 0.732268 21.9374C4.0107 27.5732 19.5666 27.1472 24.5406 24.52C27.6854 22.8589 31.1532 17.3834 26.0102 8.54239C20.8673 -0.298462 13.6742 -0.0301557 10.6057 1.59058ZM14.0807 9.55488C15.2443 6.18049 16.9064 3.58973 16.9064 3.58973C16.9064 3.58973 19.2903 5.15269 20.4119 6.40391C20.5074 6.51053 20.6062 6.61854 20.7072 6.7293C21.7926 7.91805 23.1424 9.39694 23.638 12.2959C24.6689 18.3276 22.3713 22.3451 22.3713 22.3451C22.3713 22.3451 23.2239 17.6627 21.6995 13.8078C20.8214 11.5872 17.3158 8.44562 17.3158 8.44562C17.3158 8.44562 16.6134 10.5522 15.0827 12.7733C14.8415 13.1234 14.6264 13.454 14.4205 13.7705C13.3207 15.4615 12.4852 16.7461 9.32634 18.4146C7.02166 19.6319 2.63118 19.7809 2.63118 19.7809C2.63118 19.7809 7.63587 18.3562 10.7268 15.7407C12.9613 13.8501 13.1099 13.2237 13.4602 11.7471C13.5944 11.1811 13.7582 10.49 14.0807 9.55488Z"
 											fill="white"
 										/>
@@ -34,7 +34,6 @@ export default function Home() {
 						<div className="flex -my-2 -mr-2 md:hidden">
 							<a
 								href="/auth"
-								target="_blank"
 								rel="noopener noreferrer"
 								className="font-semibold text-sm px-4 h-9 bg-teal-8 hover:bg-teal-9 text-white focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full"
 							>
@@ -97,7 +96,6 @@ export default function Home() {
 						<div className="items-center justify-end hidden space-x-3 md:flex lg:flex-1 lg:w-0 flex-nowrap">
 							<a
 								href="/auth"
-								target="_blank"
 								rel="noopener noreferrer"
 								className="font-semibold text-sm px-4 h-10 bg-teal-8 hover:bg-teal-9 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full bg-white hover:bg-opacity-90"
 							>
@@ -133,7 +131,6 @@ export default function Home() {
 										<div className="jsx-1009e820c0ddca8b mt-8">
 											<a
 												href="/auth"
-												target="_blank"
 												rel="noopener noreferrer"
 												className="bg-white text-md lg:text-btn h-11 px-5 font-semibold bg-teal-8 hover:bg-teal-9 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full hover:bg-[#c7c7c7]"
 											>
@@ -457,7 +454,6 @@ export default function Home() {
 							characters you love are just a chat away
 						</h2>
 						<a href="/auth" 
-							target="_blank"
 							rel="noopener noreferrer">
 							<button className="flex px-8 py-4 text-white text-md bg-black rounded-md max-w-max flex-row gap-x-2 justify-center items-center hover:bg-[#1e1e1e]">
 								Start today

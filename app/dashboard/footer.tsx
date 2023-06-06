@@ -22,7 +22,7 @@ function Footer() {
 									className="max-h-10 px-2 py-2 border-slate-500"
 									placeholder="Enter your email"
 								/>
-								<button className="max-h-10 text-white bg-black px-4 py-2 rounded-md">
+								<button className="max-h-10 hover:bg-slate-800 text-white bg-black px-4 py-2 rounded-md">
 									Subscribe
 								</button>
 							</div>

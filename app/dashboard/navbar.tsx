@@ -2,7 +2,7 @@ import * as React from "react"
 
 export default function NavBar(){
     return (
-        <div className="sticky w-full top-0 transition-all py-1.5 md:py-0.5 duration-200 z-50 text-black-400 bg-white w-screen dark:text-white dark:bg-black">
+        <div className="sticky w-full top-0 transition-all py-1.5 md:py-0.5 duration-200 z-20 text-black-400 bg-white w-screen dark:text-white dark:bg-black">
             <div className="mx-auto sm:px-7 px-4 dark:text-white w-full ">
                 <div className="relative flex items-center justify-between py-3">
                     <div className="flex justify-start xl:flex-1">
@@ -60,7 +60,7 @@ export default function NavBar(){
                     <nav className="hidden ml-4 xl:ml-0 md:flex md:flex-1 justify-end gap-x-2 px-2">
                         <div className="relative" data-headlessui-state="">
                             <button
-                                className="text-black hover:bg-white md:inline-flex hidden items-center whitespace-nowrap text-sm font-medium focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
+                                className="text-black hover:bg-slate-500 md:inline-flex hidden items-center whitespace-nowrap text-sm font-medium focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
                                 type="button"
                                 aria-expanded="false"
                                 data-headlessui-state=""
@@ -74,7 +74,7 @@ export default function NavBar(){
                             data-headlessui-state=""
                         >
                             <button
-                                className="text-black hover:bg-white md:inline-flex hidden items-center text-sm font-medium focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
+                                className="text-black hover:bg-slate-500 md:inline-flex hidden items-center text-sm font-medium focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
                                 type="button"
                                 aria-expanded="false"
                                 data-headlessui-state=""
@@ -89,7 +89,7 @@ export default function NavBar(){
                             href="/auth"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-semibold text-sm px-4 h-10 bg-[#dfdfdf] hover:bg-teal-9 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full bg-white hover:bg-opacity-90"
+                            className="font-semibold text-sm px-4 h-10 bg-[#dfdfdf] hover:bg-slate-200 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full bg-white hover:bg-opacity-90"
                         >
                             My Account
                         </a>
