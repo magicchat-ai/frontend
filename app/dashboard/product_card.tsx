@@ -8,8 +8,8 @@ type PropsType =  {
     name: string,
     tagline: string,
     price: number,
-    modal: object,
-    setModal: React.Dispatch<object>
+    modal: any,
+    setModal: any
 }
 
 const ProductCard = (props: PropsType) => {

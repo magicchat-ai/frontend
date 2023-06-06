@@ -7,7 +7,7 @@ type PropsType = {
     name: string,
     tagline: string,
     image_url: string,
-    setModal: React.Dispatch<object>
+    setModal: any
 }
 
 const PopupModal = (props: PropsType) => {

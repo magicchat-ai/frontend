@@ -7,10 +7,10 @@ import ProductCard from "./product_card";
 import PopupModal from "./popup_modal";
 
 const Dashboard = () => {
-	const [modal, setModal] = React.useState({});
+	const [modal, setModal] = React.useState({"name": '', "tagline": '', 'setModal': null});
 	return (
 		<main className="max-w-full w-screen overflow-x-clip bg-white">
-			{modal.name && (
+			{modal.name.length && (
 				<PopupModal
 					name={modal?.name}
 					tagline={modal?.tagline}
