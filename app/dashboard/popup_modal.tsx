@@ -12,10 +12,15 @@ type PropsType = {
 	setModal: any;
 };
 
+type IChat = {
+	name: string,
+	setChat: any
+}
+
 const PopupModal = (props: PropsType) => {
 	// this data is pre-populated
 	// enable fetching through database
-	const [chat, setChat] = React.useState({ name: "", setChat: '' });
+	const [chat, setChat] = React.useState<IChat>({ name: "", setChat: null });
 
 	const data = {
 		information: [
@@ -40,7 +45,7 @@ const PopupModal = (props: PropsType) => {
 	};
 
 	const PopupModalComponent = () => (
-		<div className="px-12 bg-white rounded-t-2xl py-12">
+		<div className="px-12 dark:text-black bg-white rounded-t-2xl py-12">
 			<div className="flex flex-col flex-wrap w-full gap-y-3 mt-10">
 				<span className="flex font-bold text-3xl">{props.name}</span>
 				<span className="flex font-normal text-[#787373] text-xl">

@@ -44,7 +44,7 @@ const Dashboard = () => {
 
 			<div className="flex w-full w-screen justify-center">
 				<div className="flex flex-col max-w-screen-lg my-8 rounded-xl w-full px-8 py-8 justify-center self-center gap-y-4">
-					<div className="flex text-2xl max-w-screen-lg flex-start">
+					<div className="flex text-2xl max-w-screen-lg flex-start dark:text-black">
 						Most Popular
 					</div>
 					<div className="flex flex-row max-w-max flex-wrap">

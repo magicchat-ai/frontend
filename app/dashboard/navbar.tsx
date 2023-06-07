@@ -2,7 +2,7 @@ import * as React from "react"
 
 export default function NavBar(){
     return (
-        <div className="sticky w-full top-0 transition-all py-1.5 md:py-0.5 duration-200 z-20 text-black-400 bg-white w-screen dark:text-white dark:bg-black">
+        <div className="sticky w-full top-0 transition-all py-1.5 md:py-0.5 duration-200 z-20 text-black-400 bg-white w-screen dark:text-black dark:bg-white">
             <div className="mx-auto sm:px-7 px-4 dark:text-white w-full ">
                 <div className="relative flex items-center justify-between py-3">
                     <div className="flex justify-start xl:flex-1">

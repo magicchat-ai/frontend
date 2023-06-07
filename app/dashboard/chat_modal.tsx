@@ -13,12 +13,13 @@ const ChatModal = (props: PropsType) => {
         {'role': props.name, 'content': 'Ho ho ho! Hello kid, I am Santa. It\'s Christmas time. What do you want?'}
     ]);
 
-	const bottomRef = React.useRef<HTMLInputElement>(null);
+	const bottomRef = React.useRef<HTMLDivElement>(null);
     const [messageTrigger, setMessageTrigger] = React.useState(1)
     const [prompt, setPrompt] = React.useState('')
 
     React.useEffect(() => {
         console.log("triggered")
+        // @ts-expect-error
         scrollIntoView(bottomRef.current, {
           scrollMode: 'if-needed',
           block: 'nearest',
@@ -58,7 +59,7 @@ const ChatModal = (props: PropsType) => {
     }
 
 	const renderedChatList = chatList.map((chat, index) => (
-		<div key={index} className="bg-white text-lg lg:text-xl text-black rounded-lg py-4 px-4 self-center items-end w-[32em] overflow-x-auto flex-wrap">
+		<div key={index} className={`${chat.role!=='user'?'bg-white':'bg-blue-200'} text-lg lg:text-xl text-black rounded-lg py-4 px-4 self-center items-end w-[32em] overflow-x-auto flex-wrap`}>
             {chat.content}
         </div>
 	));
@@ -92,7 +93,7 @@ const ChatModal = (props: PropsType) => {
                         onChange={handleTextChange} 
                         value={prompt}
                         onKeyDown={(e) => { if(e.key==='Enter') handleSubmitPrompt(e) }} 
-                        className="rounded-lg px-4 py-2 mx-auto w-full max-w-prose" placeholder="Type your message..."></textarea>
+                        className="rounded-lg px-4 py-2 mx-auto w-full max-w-prose text-black" placeholder="Type your message..."></textarea>
                         <div ref={bottomRef}></div>
 				</div>
 			</div>
