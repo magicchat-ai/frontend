@@ -28,8 +28,7 @@ export default function NavBar(){
                     </div>
                     <div className="flex -my-2 -mr-2 md:hidden">
                         <a
-                            href="/auth"
-                            target="_blank"
+                            href="/dashboard/account"
                             rel="noopener noreferrer"
                             className="font-semibold text-sm px-4 h-9 bg-teal-8 hover:bg-teal-9 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full"
                         >
@@ -86,8 +85,7 @@ export default function NavBar(){
                     </nav>
                     <div className="items-center justify-end hidden space-x-3 md:flex lg:flex-1 lg:w-0 flex-nowrap">
                         <a
-                            href="/auth"
-                            target="_blank"
+                            href="/dashboard/account"
                             rel="noopener noreferrer"
                             className="font-semibold text-sm px-4 h-10 bg-[#dfdfdf] hover:bg-slate-200 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full bg-white hover:bg-opacity-90"
                         >
