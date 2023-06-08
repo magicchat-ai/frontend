@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 
 import ChatModal from './chat_modal'
+import AddReview from './add_review'
 
 type PropsType = {
 	name: string;
@@ -21,6 +22,7 @@ const PopupModal = (props: PropsType) => {
 	// this data is pre-populated
 	// enable fetching through database
 	const [chat, setChat] = React.useState<IChat>({ name: "", setChat: null });
+	const [addingReview, setAddingReview] = React.useState(false)
 
 	const data = {
 		information: [
@@ -43,6 +45,13 @@ const PopupModal = (props: PropsType) => {
 			top_author: "Nick",
 		},
 	};
+
+	function handleMinimizeModal() {
+		if(chat.name?.length>0) {
+			setAddingReview(true)
+		}
+		else props.setModal({})
+	}
 
 	const PopupModalComponent = () => (
 		<div className="px-12 dark:text-black bg-white rounded-t-2xl py-12">
@@ -155,8 +164,9 @@ const PopupModal = (props: PropsType) => {
 
 	return (
 		<div className="fixed px-0 inset-0 h-full z-30 bg-[#6E6E6ED9] flex flex-col w-screen overflow-y-scroll">
+			{addingReview && <AddReview setAddingReview={setAddingReview} setModal={props.setModal}/>}
 			<div
-				onClick={() => props.setModal({})}
+				onClick={() => handleMinimizeModal()}
 				className="pt-20 w-full flex"
 			></div>
             {!(chat.name?.length>0) && <PopupModalComponent />}
