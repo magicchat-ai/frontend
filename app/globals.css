@@ -26,20 +26,17 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.keen-slider.jsx-1009e820c0ddca8b{
-  height:100%
-}
-.header-carousel.jsx-1009e820c0ddca8b{
-  width:-webkit-max-content;
-  width:-moz-max-content;
-  width: max-content
-}
-.keen-slider__slide.jsx-1009e820c0ddca8b{
-  min-height: unset !important;
-  min-width: unset !important;
-  width: unset !important;
-  width: -webkit-fit-content !important;
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-  height: auto !important
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+  }
 }

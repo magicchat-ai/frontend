@@ -115,11 +115,11 @@ export default function Home() {
 			>
 				<div className="mb-22">
 					<div className="-mt-20">
-						<header className="jsx-1009e820c0ddca8b pb-20 overflow-hidden lg:pt-24 lg:-mt-24 md:pt-16 md:-mt-16">
-							<div className="jsx-1009e820c0ddca8b max-w-[1224px] mx-auto ">
-								<div className="jsx-1009e820c0ddca8b gap-6 px-8 pt-[135px] pb-0 md:pb-16 mb-[-20px] lg:mb-0 mx-auto mt-4 lg:pt-20 lg:grid xl:px-0 lg:grid-cols-12 lg:gap-y-20">
-									<div className="jsx-1009e820c0ddca8b text-white lg:col-span-7 ">
-										<h1 className="jsx-1009e820c0ddca8b text-5xl font-medium lg:text-7xl">
+						<header className="pb-20 overflow-hidden lg:pt-24 lg:-mt-24 md:pt-16 md:-mt-16">
+							<div className="max-w-[1224px] mx-auto ">
+								<div className="gap-6 px-8 pt-[135px] pb-0 md:pb-16 mb-[-20px] lg:mb-0 mx-auto mt-4 lg:pt-20 lg:grid xl:px-0 lg:grid-cols-12 lg:gap-y-20">
+									<div className="text-white lg:col-span-7 ">
+										<h1 className="text-5xl font-medium lg:text-7xl">
 											Enjoy talking to your favorite characters
 										</h1>
 									</div>
@@ -141,178 +141,28 @@ export default function Home() {
 								</div>
 							</div>
 
-							<div className="jsx-1009e820c0ddca8b relative px-4 md:hidden">
-								<div className="jsx-1009e820c0ddca8b aspect-w-[1.59] aspect-h-1 mt-20 rounded-3xl overflow-hidden z-0">
-									{/* Cover photo here
-                  <video src="https://res.cloudinary.com/glide/video/upload/w_1224/v1679490972/glideapps.com/homepage/2023/1.1%20Apps%20anywhere%20%282023-03-22%29_med.mp4" poster="https://images.ctfassets.net/n3rcstr5ldte/1ulbYM9Qi8Ez10FwkMa6P7/13b37e0f0abb74f1f9bc08f9ca206da7/apps-that-work-anywhere.jpg?h=250" className="jsx-1009e820c0ddca8b object-cover w-full h-full">
-                  </video> */}
-								</div>
-								<div className="jsx-1009e820c0ddca8b absolute bottom-5 left-5">
-									<span className="jsx-1009e820c0ddca8b inline-flex items-center justify-center px-4 py-2 ml-3 text-xs text-white transition rounded-full whitespace-nowrap bg-alpha-dark-2 backdrop-blur">
-										Apps that work anywhere
-									</span>
-								</div>
-							</div>
+							<div className="flex no-scrollbar mt-10 rounded-lg flex-row gap-x-7 px-4 py-4 h-[22em] bg-transparent overflow-x-scroll">
 
-							<div className="jsx-1009e820c0ddca8b origin-bottom-left scale-[0.8] md:scale-100 max-md:hidden">
-								<div className="jsx-1009e820c0ddca8b relative w-screen">
-									<div className="jsx-1009e820c0ddca8b items-end hidden pt-[30px] lg:pt-20 header-carousel lg:flex keen-slider flex">
-										<div className="jsx-1009e820c0ddca8b keen-slider__slide flex-row ">
-											{" "}
-											{/* style="transform: translate3d(1565px, 0px, 0px);"> */}
-											<article className="relative w-[560px] h-[352px] cursor-pointer mr-6">
-												<a href="#" className="pointer-events-none select-none">
-													<figure className="relative w-full h-full overflow-hidden rounded-3xl bg-neutrals-opaque-13">
-														<video
-															className="object-cover w-full h-full"
-															src="https://res.cloudinary.com/glide/video/upload/w_1224/v1679490972/glideapps.com/homepage/2023/1.1%20Apps%20anywhere%20%282023-03-22%29_med.mp4"
-															poster="https://images.ctfassets.net/n3rcstr5ldte/1ulbYM9Qi8Ez10FwkMa6P7/13b37e0f0abb74f1f9bc08f9ca206da7/apps-that-work-anywhere.jpg"
-														></video>
-													</figure>
-													<div className="absolute bottom-5 left-5">
-														<button className="jsx-c5f8a238cb774370 inline-flex items-center justify-center px-4 py-2 text-xs text-white transition rounded-full whitespace-nowrap">
-															{" "}
-															{/*style="background-color: rgba(245, 249, 255, 0.07);">*/}
-															Apps that work anywhere
-														</button>
-													</div>
-												</a>
-											</article>
-										</div>
-
-										<div className="jsx-1009e820c0ddca8b keen-slider__slide">
-											{" "}
-											{/* style="transform: translate3d(-1171px, 0px, 0px);"> */}
-											<article className="relative w-[590px] h-[352px] cursor-pointer mr-6">
-												<a href="#" className="pointer-events-none select-none">
-													<figure className="relative w-full h-full overflow-hidden rounded-3xl bg-neutrals-opaque-13">
-														<video
-															className="object-cover w-full h-full"
-															src="https://res.cloudinary.com/glide/video/upload/w_1224/v1679993537/glideapps.com/homepage/2023/4%20Data%20sources%20that%20sync%20and%20scale%20-%20STATIC%203x%2060fps_med.mp4"
-															poster="https://images.ctfassets.net/n3rcstr5ldte/76TRrU7tNttLXnwnezigyE/5b4f25e555c9f8f7a99d9532ba55feda/data-sources-that-sync-and-scale.jpg"
-														></video>
-													</figure>
-													<div className="absolute bottom-5 left-5">
-														<button className="jsx-c5f8a238cb774370 inline-flex items-center justify-center px-4 py-2 text-xs text-white transition rounded-full whitespace-nowrap">
-															{" "}
-															{/* style="background-color: rgba(0, 2, 5, 0.35);"> */}
-															Make your christmas great in a click!
-														</button>
-													</div>
-													<div className="absolute bottom-5 right-5">
-														<figure className="h-[31px]">
-															<img
-																alt="buttons image"
-																sizes="100vw"
-																src="/_next/image?url=%2Fimages%2Fhomepage-2023%2Fhome-header%2Fbuttons.svg&amp;w=3840&amp;q=75"
-																decoding="async"
-																data-nimg="fill"
-																className="object-contain w-full h-full"
-															/>{" "}
-															{/* style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;" /> */}
-														</figure>
-													</div>
-												</a>
-											</article>
-										</div>
-
-										<div className="jsx-1009e820c0ddca8b keen-slider__slide">
-											{" "}
-											{/* style="transform: translate3d(-1171px, 0px, 0px);"> */}
-											<article className="relative w-[294px] h-[352px] cursor-pointer mr-6">
-												<a href="#" className="pointer-events-none select-none">
-													<figure className="relative w-full h-full overflow-hidden rounded-3xl bg-neutrals-opaque-13">
-														<video
-															className="object-cover w-full h-full"
-															src="https://res.cloudinary.com/glide/video/upload/v1679490951/glideapps.com/homepage/2023/1.2%20Drag-and-drop%20components_med.mp4"
-															poster="https://images.ctfassets.net/n3rcstr5ldte/29CGkwdvm5xykSjTJsSbnr/5398a3f52b7402523779218dfa0b1e17/drag-and-drop-components.jpg"
-														></video>
-													</figure>
-													<div className="absolute bottom-5 left-5">
-														<button className="jsx-c5f8a238cb774370 inline-flex items-center justify-center px-4 py-2 text-xs text-white transition rounded-full whitespace-nowrap">
-															{" "}
-															{/*style="background-color: rgba(245, 249, 255, 0.07);">*/}
-															Talk to birthday fairy in a click!
-														</button>
-													</div>
-												</a>
-											</article>
-										</div>
-
-										<div className="jsx-1009e820c0ddca8b keen-slider__slide">
-											{" "}
-											{/* style="transform: translate3d(-1171px, 0px, 0px);">*/}
-											<article className="relative w-[560px] h-[352px] cursor-pointer mr-6">
-												<a href="#" className="pointer-events-none select-none">
-													<figure className="relative w-full h-full overflow-hidden rounded-3xl bg-neutrals-opaque-13">
-														<video
-															className="object-cover w-full h-full"
-															src="https://res.cloudinary.com/glide/video/upload/w_1224/v1679935855/glideapps.com/homepage/2023/5%20Build%20Custom%20Workflows%203x%2029_med.mp4"
-															poster="https://images.ctfassets.net/n3rcstr5ldte/1jMqGHPpgZnN24emt0jj89/76326ff60b7270657b36fab7367cdfcf/build-custom-workflows.jpg"
-														></video>
-													</figure>
-													<div className="absolute bottom-5 left-5">
-														<button className="jsx-c5f8a238cb774370 inline-flex items-center justify-center px-4 py-2 text-xs text-white transition rounded-full whitespace-nowrap">
-															{" "}
-															{/* style="background-color: rgba(245, 249, 255, 0.07);"> */}
-															Kids love it and you will too.
-														</button>
-													</div>
-												</a>
-											</article>
-										</div>
-
-										<div className="jsx-1009e820c0ddca8b keen-slider__slide">
-											{" "}
-											{/* style="transform: translate3d(-1171px, 0px, 0px);"> */}
-											<article className="relative w-[294px] h-[352px] cursor-pointer mr-6">
-												<a href="#" className="pointer-events-none select-none">
-													<figure className="relative w-full h-full overflow-hidden rounded-3xl bg-neutrals-opaque-13">
-														<video
-															className="object-cover w-full h-full"
-															src="https://res.cloudinary.com/glide/video/upload/v1679490862/glideapps.com/homepage/2023/1.6%20Share%20apps%20with%20one%20click_med.mp4"
-															poster="https://images.ctfassets.net/n3rcstr5ldte/3En5tH23tjmnhZaAiHE77Y/7287ad4e4611da31e5ee8c3f9a8b39cf/share-apps-with-one-click.jpg"
-														></video>
-													</figure>
-													<div className="absolute bottom-5 left-5">
-														<button className="jsx-c5f8a238cb774370 inline-flex items-center justify-center px-4 py-2 text-xs text-white transition rounded-full whitespace-nowrap">
-															{" "}
-															{/*style="background-color: rgba(245, 249, 255, 0.07);">*/}
-															Share apps with one click
-														</button>
-													</div>
-												</a>
-											</article>
-										</div>
-
-										<div className="jsx-1009e820c0ddca8b keen-slider__slide">
-											{" "}
-											{/*style="transform: translate3d(-1171px, 0px, 0px);">*/}
-											<article className="relative w-[294px] h-[352px] cursor-pointer mr-6">
-												<a href="#" className="pointer-events-none select-none">
-													<figure className="relative w-full h-full overflow-hidden rounded-3xl bg-neutrals-opaque-13">
-														<img
-															alt="Image Integrate with tools you love"
-															sizes="100vw"
-															src="/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fn3rcstr5ldte%2F4k41fa9gYhPFahBw2ipmvs%2F59875640fb701539ebb4c520bfb18f47%2FComponent.png&amp;w=3840&amp;q=75"
-															decoding="async"
-															data-nimg="fill"
-															className="object-contain w-full h-full max-h-[370px]"
-														/>{" "}
-														{/* style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;" /> */}
-													</figure>
-													<div className="absolute bottom-5 left-5">
-														<button className="jsx-c5f8a238cb774370 inline-flex items-center justify-center px-4 py-2 text-xs text-white transition rounded-full whitespace-nowrap">
-															{" "}
-															{/* style="background-color: rgba(245, 249, 255, 0.07);"> */}
-															Integrate with tools you love
-														</button>
-													</div>
-												</a>
-											</article>
-										</div>
+								<div className="flex flex-col min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1600129979988-634770ae8b67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hyaXN0bWFzJTIwa2lkc3xlbnwwfDB8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60')] bg-no-repeat bg-center bg-cover">
+									<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-70">
 									</div>
 								</div>
+
+								<div className="flex flex-col min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2lkcyUyMGJpcnRoZGF5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60')] bg-no-repeat bg-center bg-cover">
+									<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-70">
+									</div>
+								</div>
+
+								<div className="flex flex-col min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1620428268482-cf1851a36764?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=809&q=80')] bg-no-repeat bg-center bg-cover">
+									<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-70">
+									</div>
+								</div>
+
+								<div className="flex flex-col min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1549815587-9757d02af740?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80')] bg-no-repeat bg-center bg-cover">
+									<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-70">
+									</div>
+								</div>
+
 							</div>
 						</header>
 					</div>
