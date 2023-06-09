@@ -7,11 +7,11 @@ import ProductCard from "./product_card";
 import PopupModal from "./popup_modal";
 
 const Dashboard = () => {
-	const [modal, setModal] = React.useState({"name": '', "tagline": '', 'setModal': null});
-	
+	const [modal, setModal] = React.useState({ "name": '', "tagline": '', 'setModal': null });
+
 	return (
 		<main className="max-w-full w-screen overflow-x-clip bg-white">
-			{modal.name?.length>0 && (
+			{modal.name?.length > 0 && (
 				<PopupModal
 					name={modal?.name}
 					tagline={modal?.tagline}
@@ -95,9 +95,11 @@ const Dashboard = () => {
 							<button className="flex border-2 px-6 py-2 bg-[#1e1e1e] hover:bg-[#4E4E4E] rounded-lg text-white">
 								Get started
 							</button>
-							<button className="flex border-2 text-black px-6 py-2 rounded-lg bg-white hover:bg-[#E4E4E4]">
+							<a
+								className="flex border-2 text-black px-6 py-2 rounded-lg bg-white hover:bg-[#E4E4E4]"
+								href="/dashboard/account">
 								Buy Subscription
-							</button>
+							</a>
 						</div>
 					</div>
 				</div>

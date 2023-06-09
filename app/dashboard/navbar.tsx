@@ -65,7 +65,7 @@ export default function NavBar(){
                                 data-headlessui-state=""
                                 id="headlessui-popover-button-:R15l6:"
                             >
-                                <span> home </span>
+                                <a href="/dashboard"> home </a>
                             </button>
                         </div>
                         <div
