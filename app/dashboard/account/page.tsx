@@ -58,7 +58,7 @@ const AccountPage = () => {
             <span className="flex text-lg font-semibold border-b border-slate-500">Your wallet</span>
             
             <div className="flex flex-row gap-x-10 w-full flex-wrap">
-                <label className="font-bold">Current Balance</label> 
+                <label className="font-bold text-black">Current Balance</label> 
                 <input type="text" className="px-2 py-1 w-[12em] bg-slate-200 rounded-md" placeholder="$ 30" disabled/>
             </div>
             <span className="flex font-semibold max-w-prose text-slate-500 text-sm">
@@ -67,7 +67,7 @@ const AccountPage = () => {
             </span>
 
             <div className="flex flex-row gap-x-10">
-                <label className="font-bold">Last Payment Time</label>
+                <label className="font-bold text-black">Last Payment Time</label>
                 <input type="text" className="px-2 py-1 bg-slate-200 w-[20em] rounded-md" placeholder={String(new Date())} disabled/>
             </div>
 
@@ -87,7 +87,7 @@ const AccountPage = () => {
             <div className="flex flex-row px-8 py-6 justify-between w-full">
                 <div className="flex flex-col gap-y-4">
                     <span className="text-black text-3xl font-semibold">My Acccount</span>
-                    <span className="">View or edit your account settings from here</span>
+                    <span className="text-black">View or edit your account settings from here</span>
                 </div>
                 <button className="font-bold hover:bg-slate-300 cursor-pointer text-zinc-700 px-4 py-2 h-min rounded-md">
                     Logout
