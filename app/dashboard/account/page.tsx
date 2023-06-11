@@ -1,14 +1,35 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from 'next/navigation'
+import { auth, IAuthState } from '../../firebase'
 import NavBar from "../navbar"
 import Footer from "../footer"
 
 const AccountPage = () => {
+    const router = useRouter()
+
+	const [authState, setAuthState] = React.useState<IAuthState>({
+        isSignedIn: false,
+        pending: true,
+        user: null,
+    })
+
+    React.useEffect(() => {
+        const unregisterAuthObserver = auth.onAuthStateChanged(user => 
+            setAuthState({ user, pending: false, isSignedIn: !!user })
+        )
+        return () => unregisterAuthObserver()
+    }, [])
+  
+    if (authState.pending) {
+        return (<h1> loading... </h1>)
+    }
+    else if(!authState.isSignedIn)
+        router.push("/auth")
     
     const MyDetailsComponent = () => (<div className="w-full flex flex-col gap-y-4">
             <span className="flex text-2xl text-black font-bold">My details</span>
-
             <span className="flex text-black font-semibold border-b py-2 border-slate-200 w-full">
                 Personal Information
             </span>

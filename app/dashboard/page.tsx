@@ -28,8 +28,8 @@ const Dashboard = () => {
     if (authState.pending) {
         return (<h1> loading... </h1>)
     }
-    else if(authState.isSignedIn)
-        router.push("/dashboard")
+    else if(!authState.isSignedIn)
+        router.push("/auth")
 	
 	return (
 		<main className="max-w-full w-screen overflow-x-clip bg-white">
