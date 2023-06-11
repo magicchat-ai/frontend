@@ -2,21 +2,52 @@
 
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
-import { app, db, auth } from '../firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase'
 
 type PropsType = {
     loginUseState: boolean,
     setLoginUseState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+
+
 const Login = (props: PropsType) => {
     const router = useRouter()
 
-    function handleLogin(event: any) {
+    const [email, setEmail] = React.useState<string>('')
+    const [password, setPassword] = React.useState<string>('')
+    const [isError, setIsError] = React.useState<boolean>(false)
+    const [errorMessage, setErrorMessage] = React.useState<string>('')
+
+    async function handleLogin(event: any) {
         event.preventDefault()
         event.target.setAttribute("disabled", "true")
-        event.target.style.backgroundColor = "rgb(150, 150, 150)"
 
+        if(email==="" || password==="") {
+            setErrorMessage("Incorrect email or password")
+            setIsError(true)
+            event.target.removeAttribute("disabled")
+            return
+        }
+        if(!String(email).toLowerCase().match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )) {
+            setErrorMessage("Invalid Email")
+            setIsError(true)
+            event.target.removeAttribute("disabled")
+            return
+        }
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+        } 
+        catch (err) {
+            setErrorMessage("Incorrect email or password");
+            setIsError(true);
+            event.target.removeAttribute("disabled")
+            return;
+        }
+        
         router.push("/dashboard")
     }
 
@@ -41,12 +72,17 @@ const Login = (props: PropsType) => {
             <div className="flex flex-col gap-x-4 gap-y-4">
                 <form onSubmit={handleLogin} className="flex flex-col gap-y-4">
                     <div className="flex flex-col text-black gap-y-2">
+                        {isError && <span className="rounded-md bg-red-400 text-white font-semibold w-full items-center px-2 py-2">{errorMessage}</span>}
                         <input 
                             type="text" 
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="w-full text-black px-2 py-2 border-b border-slate-300 focus-visible:outline-none" 
                             placeholder="Email" />
                         <input 
-                            type="password" 
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             className="w-full px-2 py-2 text-black border-b border-slate-300 focus-visible:outline-none"
                             placeholder="Password" />
                         <a href="/auth/forgot" className="self-end text-sm underline underline-offset-3 py-1"> Forgot Password </a>

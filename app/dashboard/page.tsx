@@ -1,6 +1,8 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from 'next/navigation'
+import { auth, IAuthState } from '../firebase'
 import NavBar from "./navbar";
 import Footer from "./footer";
 import ProductCard from "./product_card";
@@ -8,7 +10,27 @@ import PopupModal from "./popup_modal";
 
 const Dashboard = () => {
 	const [modal, setModal] = React.useState({ "name": '', "tagline": '', 'setModal': null });
+	const router = useRouter()
 
+	const [authState, setAuthState] = React.useState<IAuthState>({
+        isSignedIn: false,
+        pending: true,
+        user: null,
+    })
+
+    React.useEffect(() => {
+        const unregisterAuthObserver = auth.onAuthStateChanged(user => 
+            setAuthState({ user, pending: false, isSignedIn: !!user })
+        )
+        return () => unregisterAuthObserver()
+    }, [])
+  
+    if (authState.pending) {
+        return (<h1> loading... </h1>)
+    }
+    else if(authState.isSignedIn)
+        router.push("/dashboard")
+	
 	return (
 		<main className="max-w-full w-screen overflow-x-clip bg-white">
 			{modal.name?.length > 0 && (

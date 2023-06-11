@@ -1,6 +1,9 @@
+"use client"
+
 import * as React from 'react'
 import { useRouter } from 'next/navigation';
-import { app, db, auth } from '../firebase'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../firebase'
 
 type PropsType = {
     loginUseState: boolean,
@@ -8,13 +11,52 @@ type PropsType = {
 }
 
 const Signup = (props: PropsType) => {
+    const [email, setEmail] = React.useState<string>('')
+    const [password, setPassword] = React.useState<string>('')
+    const [name, setName] = React.useState<string>('')
+    const [errorMessage, setErrorMessage] = React.useState<string>('')
+    const [isError, setIsError] = React.useState<boolean>(false)
+    const checkbox = React.useRef<HTMLInputElement>(null)
 
     const router = useRouter()
 
-    function handleSignup(event: any) {
+    async function handleSignup(event: any) {
         event.preventDefault()
         event.target.setAttribute("disabled", "true")
-        event.target.style.backgroundColor = "rgb(150, 150, 150)"
+
+        if(!checkbox.current?.checked) {
+            setErrorMessage('Please agree to the terms')
+            setIsError(true)
+            return
+        }
+        if(name==="" || email==="" || password==="") {
+            setErrorMessage("Please enter some value")
+            setIsError(true)
+            event.target.removeAttribute("disabled")
+            return
+        }
+        if(!String(email).toLowerCase().match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )) {
+            setErrorMessage("Invalid Email")
+            setIsError(true)
+            event.target.removeAttribute("disabled")
+            return
+        }
+        try {
+            await createUserWithEmailAndPassword(auth, email, password)
+            .then((userCred) => {
+                updateProfile(userCred.user, {
+                    displayName: name
+                })
+            })
+        } 
+        catch (err) {
+            setErrorMessage("Incorrect email or password");
+            setIsError(true);
+            event.target.removeAttribute("disabled")
+            return;
+        }
 
         router.push("/dashboard")
     }
@@ -33,27 +75,37 @@ const Signup = (props: PropsType) => {
                 Sign up with Google
             </button>
 
-            <div className="seperator flex py-4 justify-self-center justify-between items-center gap-x-3 self-center">
+            <div className="flex py-4 text-black justify-self-center justify-between items-center gap-x-3 self-center">
                 <hr className="w-28" /> or <hr className="w-28" />
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
                 <form onSubmit={handleSignup} className="flex flex-col gap-4">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-2">
+                        {isError && <span className="w-full rounded-md items-center text-white bg-red-500">{errorMessage}</span>}
                         <input 
                             type="text" 
-                            className="w-full px-2 py-2 border-bottom border-slate-600" 
-                            placeholder="Name" />
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full px-2 py-2 border-b border-slate-600, text-black" 
+                            placeholder="Name" 
+                            required/>
                         <input 
                             type="text" 
-                            className="w-full px-2 py-2 border-bottom border-slate-600" 
-                            placeholder="Email" />
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full px-2 py-2 border-b border-slate-400 text-black" 
+                            placeholder="Email" 
+                            required/>
                         <input 
                             type="password" 
-                            className="w-full px-2 py-2 border-bottom border-slate-600"
-                            placeholder="Password" />
-                        <p className="flex flex-row gap-x-1 text-sm mt-4 ms-2">
-                            <input type="checkbox" className="checked:bg-blue-500" />
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full px-2 py-2 border-b border-slate-400 text-black"
+                            placeholder="Password" 
+                            required/>
+                        <p className="flex flex-row gap-x-1 text-sm mt-4 ms-2 text-black">
+                            <input type="checkbox" ref={checkbox} className="checked:bg-blue-500" required/>
                             I agree to the <a href="#" className="text-blue-500">terms and conditions</a>
                         </p>
                     </div>
