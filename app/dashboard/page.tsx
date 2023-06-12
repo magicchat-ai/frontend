@@ -27,7 +27,7 @@ type IModal =  {
 }
 
 const Dashboard = () => {
-	const [characterList, setCharacterList] = React.useState<Array<ICharacterType>>([])
+	const [characterList, setCharacterList] = React.useState<Array<ICharacterType>>()
 	const [modal, setModal] = React.useState<IModal>({ "name": '', "tagline": '', 'price': 0, 'image_url':'', 'uuid':'','modal':null, 'setModal': null});
 	const router = useRouter()
 
@@ -49,7 +49,6 @@ const Dashboard = () => {
 			let newCharacterList = new Array<ICharacterType>
 			const querySnapshot = await getDocs(collection(db, 'characters'))
 			querySnapshot.forEach((doc) => {
-				console.log(doc.data())
 				// @ts-expect-error
 				newCharacterList.push({'uuid': doc.id, ...doc.data()})
 			})
@@ -57,6 +56,18 @@ const Dashboard = () => {
 		}
 		getCharacters()
 	}, [])
+
+	const renderedCharacterList = characterList?.map((data: ICharacterType, index: number) => 
+		<ProductCard
+			key={index}
+			image_url={data.image_url}
+			name={data.name}
+			tagline={data.tagline}
+			price={data.price}
+			uuid={data.uuid}
+			setModal={setModal}
+		/>
+	)
 
     if (authState.pending) {
         return (<h1> loading... </h1>)
@@ -73,7 +84,6 @@ const Dashboard = () => {
 					tagline={modal?.tagline}
 					price={modal?.price}
 					uuid={modal?.uuid}
-					modal={modal?.modal}
 					setModal={setModal}
 				/>
 			)}
@@ -103,23 +113,10 @@ const Dashboard = () => {
 			<div className="flex w-full w-screen justify-center">
 				<div className="flex flex-col max-w-screen-lg my-8 rounded-xl w-full px-8 py-8 justify-center self-center gap-y-4">
 					<div className="flex text-2xl max-w-screen-lg flex-start dark:text-black">
-						Most Popular {characterList[0]?.name}
+						Most Popular
 					</div>
 					<div className="flex flex-row max-w-max gap-x-4 gap-y-4 flex-wrap">
-						{/* @ts-expect-error */}
-						{characterList?.map((data: ICharacterType, index: number) => {
-							<ProductCard
-								key={index}
-								image_url={data.image_url}
-								name={data.name}
-								tagline={data.tagline}
-								price={data.price}
-								uuid={data.uuid}
-								modal={modal}
-								setModal={setModal}
-							/>
-						})}
-						
+						{renderedCharacterList}
 					</div>
 				</div>
 			</div>

@@ -9,7 +9,6 @@ type PropsType =  {
     tagline: string,
     price: number,
     uuid: string,
-    modal: any,
     setModal: any
 }
 
@@ -23,7 +22,7 @@ const ProductCard = (props: PropsType) => {
                 <span className="flex text-black font-bold">{props.name}</span>
                 <span className="flex text-black font-bold">${props.price}</span>
             </div>
-            <div className="flex flex-col text-gray text-sm">{props.tagline}</div>
+            <div className="flex flex-col text-slate-600 dark:text-slate-600 text-sm">{props.tagline}</div>
             <button onClick={() => props.setModal(props)} className="flex flex-row rounded-full border-[#1e1e1e] border max-w-max mt-4 py-2 px-6 font-bold text-[#1e1e1e]">Talk now</button>
         </div>
     )

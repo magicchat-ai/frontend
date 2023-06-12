@@ -4,7 +4,7 @@ function Footer() {
 				<div className="w-full h-8 flex-wrap" 
                     style={{background: "linear-gradient(to right, #FBFF28, #FD26DA)",
                             borderRadius: "15px 15px 0px 0px"}}></div>
-				<div className="flex w-full flex-wrap px-8 flex-col">
+				<div className="flex w-full flex-wrap px-8 flex-col bg-white dark:text-black">
 					<div className="w-full py-8 flex-col">
 						<div className="flex gap-x-4 w-full flex-wrap py-2 flex-row justify-between">
 							<div className="flex max-w-max flex-col">

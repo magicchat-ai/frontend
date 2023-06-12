@@ -13,7 +13,6 @@ type PropsType = {
 	price: number,
 	image_url: string,
 	uuid: string,
-	modal: any,
 	setModal: any,
 };
 
@@ -39,9 +38,17 @@ const PopupModal = (props: PropsType) => {
 
 	React.useEffect(()=> {
 		async function getData() {
-			const docData = await getDoc(doc(db, `characters_info`, props.uuid))
-			// @ts-expect-error
-			setData(docData.data())
+			const docRef = doc(db, "characters_info", `${String(props.uuid)}`)
+			const docSnap = await getDoc(docRef)
+			
+			const newDocData = {
+				'information': docSnap.data()?.information,
+				'special_message': docSnap.data()?.special_message,
+				'popular': docSnap.data()?.popular,
+				'ratings': docSnap.data()?.ratings,
+			}
+			
+			setData(newDocData)
 		}
 		getData()
 	}, [props.uuid])
@@ -86,7 +93,7 @@ const PopupModal = (props: PropsType) => {
 					</div>
 
 					<div className="flex flex-col gap-y-10 flex-wrap py-12">
-						{data?.information.map((info: string, index: number) => {
+						{data?.information?.map((info: string, index: number) => {
 							return (
 								<div key={index} className="flex align-justify">
 									{info}
@@ -112,12 +119,12 @@ const PopupModal = (props: PropsType) => {
 						<h2 className="flex text-xl text-black">
 							Kids also loved talking to
 						</h2>
-						<Image src={data?.popular.image_url} alt="" />
+						<Image src={data?.popular?.image_url} alt="" />
 						<span className="flex flex-row justify-between">
 							<span className="flex text-black font-bold text-lg">
-								{data?.popular.name}
+								{data?.popular?.name}
 							</span>
-							<span className="flex">${data?.popular.price}</span>
+							<span className="flex">${data?.popular?.price}</span>
 						</span>
 						<button className="flex flex-wrap px-6 w-full py-2 bg-black text-white hover:bg-[#1E1E1E] justify-center rounded-md">
 							Talk now
@@ -130,7 +137,7 @@ const PopupModal = (props: PropsType) => {
 						<h2 className="flex text-xl text-black">Ratings</h2>
 						<span className="flex flex-row justify-between">
 							<span className="flex text-black font-bold text-lg">
-								{data?.ratings.score}/5
+								{data?.ratings?.score}/5
 							</span>
 							{/* ratings distribution chart: optional for now */}
 						</span>
@@ -138,10 +145,10 @@ const PopupModal = (props: PropsType) => {
 						<div className="flex text-black font-bold">Top Review</div>
 
 						<div className="flex flex-row max-w-xs gap-x-2">
-							<span> {data?.ratings.top_score}</span>
+							<span> {data?.ratings?.top_score}</span>
 							<div className="flex flex-wrap gap-y-2">
-								<span className="">{data?.ratings.top_review}</span>
-								<span className="">{data?.ratings.top_author}</span>
+								<span className="">{data?.ratings?.top_review}</span>
+								<span className="">{data?.ratings?.top_author}</span>
 							</div>
 						</div>
 					</div>

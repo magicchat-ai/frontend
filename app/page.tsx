@@ -169,7 +169,7 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center py-32 self-center gap-y-12 justify-self-center">
+			<div className="flex flex-col items-center py-32 self-center gap-y-12 justify-self-center bg-white dark:text-black">
 				<div className="flex flex-row font-bold text-4xl max-w-screen-md justify-center self-center content-center justify-items-center text-center">
 					Unleash Your Imagination with AI-Powered Avatar Talk!
 				</div>
@@ -279,7 +279,7 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className="flex flex-col gap-y-6 justify-center py-8 px-8">
+			<div className="flex flex-col gap-y-6 justify-center py-8 px-8 bg-white dark:text-black">
 				<svg
 					className="justify-between self-center"
 					width="50"
