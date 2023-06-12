@@ -1,50 +1,51 @@
 "use client";
 
-import * as React from "react";
-import Image from "next/image";
-
+import * as React from "react"
+import Image from "next/image"
+import { getDoc, doc } from "firebase/firestore"
+import { db } from '../firebase'
 import ChatModal from './chat_modal'
 import AddReview from './add_review'
 
 type PropsType = {
-	name: string;
-	tagline: string;
-	image_url: string;
-	setModal: any;
+	name: string,
+	tagline: string,
+	price: number,
+	image_url: string,
+	uuid: string,
+	modal: any,
+	setModal: any,
 };
 
 type IChat = {
 	name: string,
-	setChat: any
+	setChat: any,
 }
+
+type IDataType = {
+	information: Array<string>,
+	special_message: string,
+	popular: any,
+	ratings: any,
+}
+
 
 const PopupModal = (props: PropsType) => {
 	// this data is pre-populated
 	// enable fetching through database
-	const [chat, setChat] = React.useState<IChat>({ name: "", setChat: null });
+	const [chat, setChat] = React.useState<IChat>({ name: "", setChat: null })
+	const [data, setData] = React.useState<IDataType>()
 	const [addingReview, setAddingReview] = React.useState(false)
 
-	const data = {
-		information: [
-			"Welcome to the world of AI talking Santa, where magic meets technology! Get ready for an enchanting and interactive experience that will bring the spirit of Christmas alive right in your home. Imagine having a jolly and wise Santa Claus at your fingertips, ready to chat, sing, and spread holiday cheer whenever you desire. ",
-			"Whether you&apos;re a child eagerly awaiting Santa&apos;s arrival or an adult seeking some festive fun, our AI Talking Santa is here to make your Christmas unforgettable. Ask him about his reindeer, the North Pole, or share your Christmas wish list - he&apos;ll listen attentively and respond with his signature warmth and wisdom.",
-			"Don&apos;t wait for the snow to fall - start the festivities early with AI Talking Santa. Experience the joy of talking to Santa Claus like never before and make this Christmas a truly memorable one for everyone in the family.",
-		],
-		special_message:
-			"What are you waiting for? Make your Christmas more cheerful!",
-		popular: {
-			name: "Easter Bunny",
-			image: "",
-			price: 19.99,
-		},
-		ratings: {
-			score: 4.6,
-			top_review:
-				"So amazing and lively! Santa got all my wishes tru and it made this day my best christmas ever.",
-			top_score: 5,
-			top_author: "Nick",
-		},
-	};
+	React.useEffect(()=> {
+		async function getData() {
+			const docData = await getDoc(doc(db, `characters_info`, props.uuid))
+			// @ts-expect-error
+			setData(docData.data())
+		}
+		getData()
+	}, [])
+	
 
 	function handleMinimizeModal() {
 		if(chat.name?.length>0) {
@@ -69,7 +70,7 @@ const PopupModal = (props: PropsType) => {
 					<div className="flex flex-col px-2">
 						<div className="flex flex-row justify-between">
 							<span className="flex text-grey text-sm">
-								<div className="text-black font-bold flex text-4xl">$19.99</div>
+								<div className="text-black font-bold flex text-4xl">${props.price}</div>
 								/5 mins
 							</span>
 							<button
@@ -85,7 +86,7 @@ const PopupModal = (props: PropsType) => {
 					</div>
 
 					<div className="flex flex-col gap-y-10 flex-wrap py-12">
-						{data.information.map((info: string, index: number) => {
+						{data?.information.map((info: string, index: number) => {
 							return (
 								<div key={index} className="flex align-justify">
 									{info}
@@ -96,7 +97,7 @@ const PopupModal = (props: PropsType) => {
 
 					<div className="flex flex-row py-4 justify-between flex-wrap">
 						<span className="flex text-black font-bold text-xl max-w-md">
-							{data.special_message}
+							{data?.special_message}
 						</span>
 						<button
                             onClick={() => setChat({ 'name': props.name, 'setChat': setChat })} 
@@ -111,12 +112,12 @@ const PopupModal = (props: PropsType) => {
 						<h2 className="flex text-xl text-black">
 							Kids also loved talking to
 						</h2>
-						<Image src={data.popular.image} alt="" />
+						<Image src={data?.popular.image_url} alt="" />
 						<span className="flex flex-row justify-between">
 							<span className="flex text-black font-bold text-lg">
-								{data.popular.name}
+								{data?.popular.name}
 							</span>
-							<span className="flex">${data.popular.price}</span>
+							<span className="flex">${data?.popular.price}</span>
 						</span>
 						<button className="flex flex-wrap px-6 w-full py-2 bg-black text-white hover:bg-[#1E1E1E] justify-center rounded-md">
 							Talk now
@@ -129,7 +130,7 @@ const PopupModal = (props: PropsType) => {
 						<h2 className="flex text-xl text-black">Ratings</h2>
 						<span className="flex flex-row justify-between">
 							<span className="flex text-black font-bold text-lg">
-								{data.ratings.score}/5
+								{data?.ratings.score}/5
 							</span>
 							{/* ratings distribution chart: optional for now */}
 						</span>
@@ -137,10 +138,10 @@ const PopupModal = (props: PropsType) => {
 						<div className="flex text-black font-bold">Top Review</div>
 
 						<div className="flex flex-row max-w-xs gap-x-2">
-							<span> {data.ratings.top_score}</span>
+							<span> {data?.ratings.top_score}</span>
 							<div className="flex flex-wrap gap-y-2">
-								<span className="">{data.ratings.top_review}</span>
-								<span className="">{data.ratings.top_author}</span>
+								<span className="">{data?.ratings.top_review}</span>
+								<span className="">{data?.ratings.top_author}</span>
 							</div>
 						</div>
 					</div>

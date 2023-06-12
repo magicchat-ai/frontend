@@ -2,14 +2,33 @@
 
 import * as React from "react";
 import { useRouter } from 'next/navigation'
-import { auth, IAuthState } from '../firebase'
+import { db, auth, IAuthState } from '../firebase'
 import NavBar from "./navbar";
 import Footer from "./footer";
 import ProductCard from "./product_card";
 import PopupModal from "./popup_modal";
+import { collection, getDocs } from "firebase/firestore";
+
+type ICharacterType = {
+	name: string,
+	tagline: string,
+	price: number,
+	image_url: string,
+	uuid: string
+}
+type IModal =  {
+    image_url: string,
+    name: string,
+    tagline: string,
+    price: number,
+    uuid: string,
+    modal: any,
+    setModal: any
+}
 
 const Dashboard = () => {
-	const [modal, setModal] = React.useState({ "name": '', "tagline": '', 'setModal': null });
+	const [characterList, setCharacterList] = React.useState<Array<ICharacterType>>([])
+	const [modal, setModal] = React.useState<IModal>({ "name": '', "tagline": '', 'price': 0, 'image_url':'', 'uuid':'','modal':null, 'setModal': null});
 	const router = useRouter()
 
 	const [authState, setAuthState] = React.useState<IAuthState>({
@@ -25,19 +44,36 @@ const Dashboard = () => {
         return () => unregisterAuthObserver()
     }, [])
   
+	React.useEffect(() => {
+		async function getCharacters() {
+			let newCharacterList = new Array<ICharacterType>
+			const querySnapshot = await getDocs(collection(db, 'characters'))
+			querySnapshot.forEach((doc) => {
+				console.log(doc.data())
+				// @ts-expect-error
+				newCharacterList.push({'uuid': doc.id, ...doc.data()})
+			})
+			setCharacterList(newCharacterList)
+		}
+		getCharacters()
+	}, [])
+
     if (authState.pending) {
         return (<h1> loading... </h1>)
     }
     else if(!authState.isSignedIn)
         router.push("/auth")
-	
+
 	return (
 		<main className="max-w-full w-screen overflow-x-clip bg-white">
 			{modal.name?.length > 0 && (
 				<PopupModal
+					image_url={""}
 					name={modal?.name}
 					tagline={modal?.tagline}
-					image_url={""}
+					price={modal?.price}
+					uuid={modal?.uuid}
+					modal={modal?.modal}
 					setModal={setModal}
 				/>
 			)}
@@ -69,17 +105,24 @@ const Dashboard = () => {
 					<div className="flex text-2xl max-w-screen-lg flex-start dark:text-black">
 						Most Popular
 					</div>
-					<div className="flex flex-row max-w-max flex-wrap">
-						<ProductCard
-							image_url={
-								"https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg/220px-Jonathan_G_Meath_portrays_Santa_Claus.jpg"
-							}
-							name={"Santa Claus"}
-							tagline={"AI powered Santa Claus"}
-							price={19.99}
-							modal={modal}
-							setModal={setModal}
-						/>
+					<div className="flex flex-row max-w-max gap-x-4 gap-y-4 flex-wrap">
+						{/* @ts-expect-error */}
+						{characterList?.map((data: ICharacterType, index: number) => {
+							<>
+								{data.name}
+								<ProductCard
+									key={index}
+									image_url={data.image_url}
+									name={data.name}
+									tagline={data.tagline}
+									price={data.price}
+									uuid={data.uuid}
+									modal={modal}
+									setModal={setModal}
+								/>
+							</>
+						})}
+						
 					</div>
 				</div>
 			</div>

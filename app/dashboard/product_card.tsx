@@ -8,6 +8,7 @@ type PropsType =  {
     name: string,
     tagline: string,
     price: number,
+    uuid: string,
     modal: any,
     setModal: any
 }
