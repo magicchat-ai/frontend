@@ -4,8 +4,9 @@ import * as React from "react";
 import scrollIntoView from 'scroll-into-view-if-needed'
 
 type PropsType = {
-	name: string;
-	setChat: any;
+	name: string,
+    chat_cover_bg: string | undefined,
+	setChat: any,
 };
 
 const ChatModal = (props: PropsType) => {
@@ -83,7 +84,10 @@ const ChatModal = (props: PropsType) => {
 					/>
 				</svg>
 			</div>
-			<div className="flex flex-col rounded-lg justify-seperated h-full py-6 w-full max-w-screen-md mx-auto min-h-screen bg-[url('https://images.unsplash.com/photo-1543258103-a62bdc069871?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80')] bg-center bg-cover bg-no-repeat bg-fixed">
+			<div
+                className={`flex flex-col rounded-lg justify-seperated h-full py-6 w-full max-w-screen-md mx-auto min-h-screen bg-center bg-cover bg-no-repeat bg-fixed`}
+                style={{backgroundImage: `url(${props.chat_cover_bg})`}}>
+
 				<div className="flex gap-y-2 flex-col grow w-full max-w-prose items-center self-center justify-end py-4">
 					{renderedChatList}
 				</div>

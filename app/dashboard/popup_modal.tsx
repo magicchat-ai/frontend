@@ -14,7 +14,7 @@ type PropsType = {
 	image_url: string,
 	uuid: string,
 	setModal: any,
-};
+}
 
 type IChat = {
 	name: string,
@@ -26,8 +26,9 @@ type IDataType = {
 	special_message: string,
 	popular: any,
 	ratings: any,
+	image_url: any,
+	chat_cover_bg: string,
 }
-
 
 const PopupModal = (props: PropsType) => {
 	// this data is pre-populated
@@ -38,21 +39,21 @@ const PopupModal = (props: PropsType) => {
 
 	React.useEffect(()=> {
 		async function getData() {
-			const docRef = doc(db, "characters_info", `${String(props.uuid)}`)
-			const docSnap = await getDoc(docRef)
+			const docSnap = await getDoc(doc(db, "characters_info", `${String(props.uuid)}`))
 			
 			const newDocData = {
 				'information': docSnap.data()?.information,
 				'special_message': docSnap.data()?.special_message,
 				'popular': docSnap.data()?.popular,
 				'ratings': docSnap.data()?.ratings,
+				'image_url': docSnap.data()?.image_url,
+				'chat_cover_bg': docSnap.data()?.chat_cover_bg,
 			}
 			
 			setData(newDocData)
 		}
 		getData()
 	}, [props.uuid])
-	
 
 	function handleMinimizeModal() {
 		if(chat.name?.length>0) {
@@ -72,7 +73,7 @@ const PopupModal = (props: PropsType) => {
 
 			<div className="flex flex-row justify-between">
 				<div className="flex flex-col w-full max-w-screen-md gap-y-4">
-					<Image alt={props.name} src={props.image_url} />
+					<Image alt={props.name} src={data?.image_url} width="900" height="300"/>
 
 					<div className="flex flex-col px-2">
 						<div className="flex flex-row justify-between">
@@ -119,7 +120,7 @@ const PopupModal = (props: PropsType) => {
 						<h2 className="flex text-xl text-black">
 							Kids also loved talking to
 						</h2>
-						<Image src={data?.popular?.image_url} alt="" />
+						<Image src={data?.popular?.image_url} alt="" width="300" height="340"/>
 						<span className="flex flex-row justify-between">
 							<span className="flex text-black font-bold text-lg">
 								{data?.popular?.name}
@@ -178,7 +179,7 @@ const PopupModal = (props: PropsType) => {
 				className="pt-20 w-full flex"
 			></div>
             {!(chat.name?.length>0) && <PopupModalComponent />}
-            {(chat.name?.length>0) && <ChatModal name={props.name} setChat={setChat}/>}
+            {(chat.name?.length>0) && <ChatModal name={props.name} chat_cover_bg={data?.chat_cover_bg} setChat={setChat}/>}
 		</div>
 	);
 };
