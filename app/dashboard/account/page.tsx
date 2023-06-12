@@ -8,7 +8,7 @@ import Footer from "../footer"
 
 const AccountPage = () => {
     const router = useRouter()
-
+    const [tab, setTab] = React.useState(0)
 	const [authState, setAuthState] = React.useState<IAuthState>({
         isSignedIn: false,
         pending: true,
@@ -99,7 +99,7 @@ const AccountPage = () => {
         </div>
     )
     
-    const [tab, setTab] = React.useState(0)
+    
 
     return (
         <div className="flex flex-col w-full h-full bg-slate-100"> 

@@ -44,7 +44,7 @@ const PopupModal = (props: PropsType) => {
 			setData(docData.data())
 		}
 		getData()
-	}, [])
+	}, [props.uuid])
 	
 
 	function handleMinimizeModal() {
