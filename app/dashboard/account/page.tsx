@@ -35,7 +35,7 @@ const AccountPage = () => {
   
     React.useEffect(()=> {
 		async function getData() {
-			const docSnap = await getDoc(doc(db, "users", `${authState.user.uid}`))
+			const docSnap = await getDoc(doc(db, "users", `${authState.user?.uid}`))
 			
 			const newUserData = {
 				'firstName': authState.user?.firstName,
@@ -48,7 +48,7 @@ const AccountPage = () => {
 			setUserData(newUserData)
 		}
 		getData()
-	}, [])
+	}, [authState.user])
 
     if (authState.pending) {
         return (<h1> loading... </h1>)
@@ -65,28 +65,28 @@ const AccountPage = () => {
             <form className="flex flex-col flex-wrap gap-y-4">
                 <div className="flex flex-row gap-x-3 gap-y-4">
                     <span className="flex flex-col">
-                        <label className=""> First Name </label>
+                        <label className="text-black"> First Name </label>
                         <input type="text" placeholder={userData?.firstName} className="w-[10em] bg-slate-200 text-black rounded-md p-2" disabled/>
                     </span>
                     <span className="flex flex-col">
-                        <label className=""> Last Name </label>
+                        <label className="text-black"> Last Name </label>
                         <input type="text" placeholder={userData?.lastName} className="w-[10em] bg-slate-200 text-black rounded-md p-2" disabled/>
                     </span>
                 </div>
                 <div className="flex flex-col">
                     <span className="flex flex-row justify-between gap-x-2 max-w-[30em] flex-wrap gap-y-2">
-                        <label className="">Email</label>
+                        <label className="text-black">Email</label>
                         <a className="text-sm text-blue-600 font-bold cursor-pointer">Resend Verification Email</a>
                     </span>
-                    <input type="email" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder={userData?.email} />
+                    <input type="email" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder={userData?.email} disabled/>
                 </div>
                 <div className="flex flex-col">
-                    <label className="">Phone Number</label>
-                    <input type="number" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder={userData?.phoneNumber} />
+                    <label className="text-black">Phone Number</label>
+                    <input type="number" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder={userData?.phoneNumber} disabled/>
                     <span className="text-sm font-semibold text-slate-500">Keep country code and 10 digits of phone number</span>
                 </div>
                 <button className="shadow-lg shadow-slate font-semibold text-sm rounded-md px-12 py-3 text-white bg-blue-600 max-w-min hover:bg-blue-700">
-                    SAVE
+                    EDIT
                 </button>
             </form>
 
@@ -102,7 +102,7 @@ const AccountPage = () => {
 
     const MySubsComponent = () => (
         <div className="w-full flex flex-col gap-y-4">
-            <span className="flex text-2xl font-bold">My subscription</span>
+            <span className="flex text-2xl font-bold text-black">My subscription</span>
 
             <span className="flex text-lg font-semibold border-b border-slate-500">Your wallet</span>
             
