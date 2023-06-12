@@ -2,13 +2,24 @@
 
 import * as React from "react"
 import { useRouter } from 'next/navigation'
-import { auth, IAuthState } from '../../firebase'
+import { Timestamp, getDoc, doc } from "firebase/firestore"
+import { db, auth, IAuthState } from '../../firebase'
 import NavBar from "../navbar"
 import Footer from "../footer"
+
+type IUserData = {
+    firstName: string,
+    lastName: string,
+    email: string,
+    phoneNumber: string,
+    currBalance: number,
+    lastPayment: Timestamp,
+}
 
 const AccountPage = () => {
     const router = useRouter()
     const [tab, setTab] = React.useState(0)
+    const [userData, setUserData] = React.useState<IUserData>()
 	const [authState, setAuthState] = React.useState<IAuthState>({
         isSignedIn: false,
         pending: true,
@@ -22,6 +33,23 @@ const AccountPage = () => {
         return () => unregisterAuthObserver()
     }, [])
   
+    React.useEffect(()=> {
+		async function getData() {
+			const docSnap = await getDoc(doc(db, "users", `${authState.user.uid}`))
+			
+			const newUserData = {
+				'firstName': authState.user?.firstName,
+				'lastName': authState.user?.lastName,
+				'email': authState.user?.email,
+				'phoneNumber': authState.user?.phoneNumber,
+				'currBalance': docSnap.data()?.currBalance,
+				'lastPayment': docSnap.data()?.lastPayment,
+			}
+			setUserData(newUserData)
+		}
+		getData()
+	}, [])
+
     if (authState.pending) {
         return (<h1> loading... </h1>)
     }
@@ -38,11 +66,11 @@ const AccountPage = () => {
                 <div className="flex flex-row gap-x-3 gap-y-4">
                     <span className="flex flex-col">
                         <label className=""> First Name </label>
-                        <input type="text" placeholder="John" className="w-[10em] bg-slate-200 text-black rounded-md p-2" disabled/>
+                        <input type="text" placeholder={userData?.firstName} className="w-[10em] bg-slate-200 text-black rounded-md p-2" disabled/>
                     </span>
                     <span className="flex flex-col">
                         <label className=""> Last Name </label>
-                        <input type="text" placeholder="Doe" className="w-[10em] bg-slate-200 text-black rounded-md p-2" disabled/>
+                        <input type="text" placeholder={userData?.lastName} className="w-[10em] bg-slate-200 text-black rounded-md p-2" disabled/>
                     </span>
                 </div>
                 <div className="flex flex-col">
@@ -50,11 +78,11 @@ const AccountPage = () => {
                         <label className="">Email</label>
                         <a className="text-sm text-blue-600 font-bold cursor-pointer">Resend Verification Email</a>
                     </span>
-                    <input type="email" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder="email@domain.com" />
+                    <input type="email" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder={userData?.email} />
                 </div>
                 <div className="flex flex-col">
                     <label className="">Phone Number</label>
-                    <input type="number" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder="+91 00000 00000" />
+                    <input type="number" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder={userData?.phoneNumber} />
                     <span className="text-sm font-semibold text-slate-500">Keep country code and 10 digits of phone number</span>
                 </div>
                 <button className="shadow-lg shadow-slate font-semibold text-sm rounded-md px-12 py-3 text-white bg-blue-600 max-w-min hover:bg-blue-700">
@@ -80,7 +108,7 @@ const AccountPage = () => {
             
             <div className="flex flex-row gap-x-10 w-full flex-wrap">
                 <label className="font-bold text-black">Current Balance</label> 
-                <input type="text" className="px-2 py-1 w-[12em] bg-slate-200 rounded-md" placeholder="$ 30" disabled/>
+                <input type="text" className="px-2 py-1 w-[12em] bg-slate-200 rounded-md" placeholder={`$ ${userData?.currBalance}`} disabled/>
             </div>
             <span className="flex font-semibold max-w-prose text-slate-500 text-sm">
                 Account Balance  would be updated within 15 minutes.
@@ -89,7 +117,7 @@ const AccountPage = () => {
 
             <div className="flex flex-row gap-x-10">
                 <label className="font-bold text-black">Last Payment Time</label>
-                <input type="text" className="px-2 py-1 bg-slate-200 w-[20em] rounded-md" placeholder={String(new Date())} disabled/>
+                <input type="text" className="px-2 py-1 bg-slate-200 w-[20em] rounded-md" placeholder={userData?.lastPayment.toString()} disabled/>
             </div>
 
             <button className="flex rounded-md shadow-lg shadow-slate py-2 px-4 bg-blue-600 text-white font-semibold w-fit hover:bg-blue-700">
