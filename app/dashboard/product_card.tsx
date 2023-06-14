@@ -14,7 +14,7 @@ type PropsType =  {
 
 const ProductCard = (props: PropsType) => {
     return (
-        <div className="flex flex-col w-56">
+        <div className="flex flex-col w-56 px-2 py-2 hover:shadow-lg hover:shadow-slate-400">
             <div className="flex max-w-max mb-4">
                 <Image alt={props.name} width="600" height="100" src={props.image_url} />
             </div>

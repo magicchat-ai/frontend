@@ -116,7 +116,7 @@ const Dashboard = () => {
 						Most Popular
 					</div>
 					<div className="flex flex-row max-w-max gap-x-4 gap-y-4 flex-wrap">
-						{renderedCharacterList}
+						{renderedCharacterList || <span>Loading...</span>}
 					</div>
 				</div>
 			</div>

@@ -41,19 +41,42 @@ const ChatModal = (props: PropsType) => {
         setPrompt(e.target.value)
     }
 
-    function handleSubmitPrompt(e: any) {
+    async function handleSubmitPrompt(e: any) {
         e.preventDefault()
-        let newChat = {"role": 'user', "content": prompt}
+        let question = prompt
+        let newChat = {"role": 'user', "content": question}
         let newChats = chatList.concat([newChat])
+        
     
         setChatList(newChats)
         setPrompt('')
         setMessageTrigger((state) => state+1)
 
-        let response = "sample response"
-        let modifiedChat = newChats.concat([{'role': 'Ghostwriter', 'content': response}])
-
+        let modifiedChat = newChats.concat([{'role': 'AI', 'content': ''}])
         setChatList(modifiedChat)
+
+        let response =  await fetch('/api/generate', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              'context': props.name,
+            })
+        });
+
+        let reader = response.body?.pipeThrough(new TextDecoderStream()).getReader()
+
+        while (true) {
+            // @ts-expect-error
+            const { value, done } = await reader.read()
+            if (done) break
+            modifiedChat[modifiedChat.length - 1].content += value
+            // setChunkRender((state) => !state)
+            // setTriggerScroll((state) => !state)
+            setMessageTrigger((state) => -state)
+        }
+
         setPrompt('')
         e.target.style.height = "auto";
         e.target.style.height = e.target.scrollHeight + "px";
