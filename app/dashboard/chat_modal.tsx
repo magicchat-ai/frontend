@@ -51,7 +51,7 @@ const ChatModal = (props: PropsType) => {
     
         setChatList(newChats)
         setPrompt('')
-        setMessageTrigger((state) => state+1)
+        setMessageTrigger((state) => -state)
 
         let modifiedChat = newChats.concat([{'role': 'AI', 'content': ''}])
         setChatList(modifiedChat)
@@ -62,7 +62,8 @@ const ChatModal = (props: PropsType) => {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              'context': props.name,
+              'context': props.first_response,
+              'question': question,
             })
         });
 

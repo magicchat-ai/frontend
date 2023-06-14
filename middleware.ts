@@ -16,16 +16,30 @@ export async function middleware(request: NextRequest, {params}) {
             
             let requestBody = await request.json()
             let context = requestBody.context
+            let question = requestBody.question
 
-            let count = 0;
+            let resp = await fetch('https://api.openai.com/v1/chat/completions', {
+                'method': 'POST',
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`,
+                },
+                'body': JSON.stringify({
+                    'model': 'gpt-3.5-turbo',
+                    'messages': [
+                        {'role': 'system', 'content': context},
+                        {'role': 'user', 'content': question}
+                    ],
+                    'stream': true
+                }),
+            });
+
+            let reader = resp.body.pipeThrough(new TextDecoderStream()).getReader()
             const resultStream = new ReadableStream({
-                pull(controller) {
-                    if (count < 10) {
-                        controller.enqueue(context)
-                        count++
-                    } else {
-                        controller.close();
-                    }
+                async pull(controller) {
+                    const { value, done } = await reader.read()
+                    if (done) controller.close()
+                    controller.enqueue(value)
                 },
             },
             {
@@ -33,7 +47,7 @@ export async function middleware(request: NextRequest, {params}) {
                 size(chunk) {
                     return 1;
                 },
-            })
+            })            
 
             return new Response(resultStream, {
                 status: 200,
