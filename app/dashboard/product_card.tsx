@@ -14,9 +14,9 @@ type PropsType =  {
 
 const ProductCard = (props: PropsType) => {
     return (
-        <div className="flex flex-col w-56 px-2 py-2 hover:shadow-lg hover:shadow-slate-400">
-            <div className="flex max-w-max mb-4">
-                <Image alt={props.name} width="600" height="100" src={props.image_url} />
+        <div className="flex cursor-pointer flex-col max-w-64 px-4 py-4 gap-y-2 hover:shadow-lg hover:shadow-slate-400 rounded-lg ">
+            <div className="flex max-w-max mb-4 max-w-[250px] h-[300px]">
+                <Image alt={props.name} width="240" height="300" src={props.image_url} />
             </div>
             <div className="flex flex-row justify-between">
                 <span className="flex text-black font-bold">{props.name}</span>

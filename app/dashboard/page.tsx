@@ -115,8 +115,8 @@ const Dashboard = () => {
 					<div className="flex text-2xl max-w-screen-lg flex-start dark:text-black">
 						Most Popular
 					</div>
-					<div className="flex flex-row max-w-max gap-x-4 gap-y-4 flex-wrap">
-						{renderedCharacterList || <span>Loading...</span>}
+					<div className="flex flex-row max-w-max gap-x-8 justify-between gap-y-6 flex-wrap">
+						{(characterList?.length>0 && renderedCharacterList) || <span>Loading...</span>}
 					</div>
 				</div>
 			</div>

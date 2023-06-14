@@ -28,6 +28,7 @@ type IDataType = {
 	ratings: any,
 	image_url: any,
 	chat_cover_bg: string,
+	first_response: string,
 }
 
 const PopupModal = (props: PropsType) => {
@@ -48,6 +49,7 @@ const PopupModal = (props: PropsType) => {
 				'ratings': docSnap.data()?.ratings,
 				'image_url': docSnap.data()?.image_url,
 				'chat_cover_bg': docSnap.data()?.chat_cover_bg,
+				'first_response': docSnap.data()?.first_response,
 			}
 			
 			setData(newDocData)
@@ -73,7 +75,7 @@ const PopupModal = (props: PropsType) => {
 
 			<div className="flex flex-row justify-between">
 				<div className="flex flex-col w-full max-w-screen-md gap-y-4">
-					<Image alt={props.name} src={data?.image_url} width="900" height="300"/>
+					<Image alt={props.name} src={data?.image_url} className="py-6 px-2 self-center" width="700" height="300"/>
 
 					<div className="flex flex-col px-2">
 						<div className="flex flex-row justify-between">
@@ -89,7 +91,7 @@ const PopupModal = (props: PropsType) => {
 							</button>
 						</div>
 						<span className="flex w-56 text-sm text-[#1E1E1E] font-light">
-							$19.99 for first 5 minutes, thereafter charged at $2/min.
+							applicable for the first 5 minutes, thereafter charged at $2/min.
 						</span>
 					</div>
 
@@ -116,13 +118,13 @@ const PopupModal = (props: PropsType) => {
 				</div>
 
 				<div className="flex flex-col mx-auto gap-y-12">
-					<div className="flex flex-col px-4 py-4 shadow-md rounded-xl gap-y-4 shadow-slate-400">
-						<h2 className="flex text-xl text-black">
+					<div className="flex flex-col px-8 py-4 shadow-md rounded-xl max-w-min self-center gap-y-4 shadow-slate-400">
+						<h2 className="flex text-xl text-black min-w-max">
 							Kids also loved talking to
 						</h2>
-						<Image src={data?.popular?.image_url} alt="" width="300" height="340"/>
+						<Image src={data?.popular?.image_url} alt={data?.popular?.name} width="260" height="180"/>
 						<span className="flex flex-row justify-between">
-							<span className="flex text-black font-bold text-lg">
+							<span className="flex text-black font-bold text-lg min-w-[10em]">
 								{data?.popular?.name}
 							</span>
 							<span className="flex">${data?.popular?.price}</span>
@@ -179,7 +181,7 @@ const PopupModal = (props: PropsType) => {
 				className="pt-20 w-full flex"
 			></div>
             {!(chat.name?.length>0) && <PopupModalComponent />}
-            {(chat.name?.length>0) && <ChatModal name={props.name} chat_cover_bg={data?.chat_cover_bg} setChat={setChat}/>}
+            {(chat.name?.length>0) && <ChatModal name={props.name} chat_cover_bg={data?.chat_cover_bg} first_response={data?.first_response} setChat={setChat}/>}
 		</div>
 	);
 };

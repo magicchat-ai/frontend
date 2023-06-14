@@ -7,11 +7,12 @@ type PropsType = {
 	name: string,
     chat_cover_bg: string | undefined,
 	setChat: any,
+    first_response: string | undefined,
 };
 
 const ChatModal = (props: PropsType) => {
 	const [chatList, setChatList] = React.useState([
-        {'role': props.name, 'content': 'Ho ho ho! Hello kid, I am Santa. It\'s Christmas time. What do you want?'}
+        {'role': props.name, 'content': props.first_response}
     ]);
 
 	const bottomRef = React.useRef<HTMLDivElement>(null);

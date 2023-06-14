@@ -7,7 +7,9 @@ const nextConfig = {
             "images.pexels.com",
             "media.istockphoto.com",
             "t3.ftcdn.net",
-            "thumbs.dreamstime.com"
+            "t4.ftcdn.net",
+            "live.staticflickr.com",
+            "img.freepik.com"
         ]
     }
 }
