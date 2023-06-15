@@ -116,6 +116,7 @@ const Dashboard = () => {
 						Most Popular
 					</div>
 					<div className="flex flex-row max-w-max gap-x-8 justify-between gap-y-6 flex-wrap">
+						{/* @ts-expect-error */}
 						{(characterList?.length>0 && renderedCharacterList) || <span>Loading...</span>}
 					</div>
 				</div>

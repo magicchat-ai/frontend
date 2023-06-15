@@ -34,9 +34,10 @@ export async function middleware(request: NextRequest, {params}) {
                 }),
             });
 
-            let reader = resp.body.pipeThrough(new TextDecoderStream()).getReader()
+            let reader = resp?.body?.pipeThrough(new TextDecoderStream())?.getReader()
             const resultStream = new ReadableStream({
                 async pull(controller) {
+                    // @ts-expect-error
                     const { value, done } = await reader.read()
                     if (done) controller.close()
                     controller.enqueue(value)
