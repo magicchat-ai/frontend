@@ -3,6 +3,7 @@ import { Readable } from 'stream';
 import { NextResponse, NextRequest } from 'next/server'
 
 export const config = {
+    runtime: 'experimental-edge',
     matcher: '/api/:path*',
 }
 
@@ -18,29 +19,49 @@ export async function middleware(request: NextRequest, {params}) {
             let context = requestBody.context
             let question = requestBody.question
 
-            let resp = await fetch('https://api.openai.com/v1/chat/completions', {
+            let response = await fetch('https://api.openai.com/v1/chat/completions', {
                 'method': 'POST',
                 'headers': {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`,
+                    'OpenAI-Organization': `${process.env.NEXT_PUBLIC_OPENAI_ORG}`
                 },
                 'body': JSON.stringify({
                     'model': 'gpt-3.5-turbo',
                     'messages': [
-                        {'role': 'system', 'content': context},
+                        {'role': 'system', 'content': `You are talking to a kid as ${context}`},
                         {'role': 'user', 'content': question}
                     ],
                     'stream': true
                 }),
             });
 
-            let reader = resp?.body?.pipeThrough(new TextDecoderStream())?.getReader()
+            // @ts-expect-error
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+
             const resultStream = new ReadableStream({
                 async pull(controller) {
-                    // @ts-expect-error
-                    const { value, done } = await reader.read()
-                    if (done) controller.close()
-                    controller.enqueue(value)
+                    const { done, value } = await reader.read();
+                    if (done) {
+                        controller.close()
+                    }
+                    // Massage and parse the chunk of data
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split(`\n`);
+                    const parsedLines = lines.map((line) => {return line.replace(/^data: /, "").trim()})
+                    .filter((line) => {return line !== "" && line !== "[DONE]"})
+                    .map((line) => { return JSON.parse(line) });
+
+                    for (const parsedLine of parsedLines) {
+                        const { choices } = parsedLine;
+                        const { delta } = choices[0];
+                        const { content } = delta;
+                        // Update the UI with the new content
+                        if (content) {
+                            controller.enqueue(content)
+                        }
+                    }
                 },
             },
             {
@@ -58,8 +79,8 @@ export async function middleware(request: NextRequest, {params}) {
                 },
             });
         }
-        catch {
-            return new Response("network error")
+        catch(error) {
+            return new Response("Network Error")
         }
     } 
 }

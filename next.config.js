@@ -9,7 +9,8 @@ const nextConfig = {
             "t3.ftcdn.net",
             "t4.ftcdn.net",
             "live.staticflickr.com",
-            "img.freepik.com"
+            "img.freepik.com",
+            "as1.ftcdn.net"
         ]
     }
 }
