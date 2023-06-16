@@ -67,13 +67,15 @@ const ChatModal = (props: PropsType) => {
         });
 
         let reader = response.body?.pipeThrough(new TextDecoderStream()).getReader()
-
+        let chunkAcc = ''
         while (true) {
             // @ts-expect-error
             const { value, done } = await reader.read()
             if (done) break
-            console.log(value)
-            for(let val of value.split(`{"id"`)) {
+            if(value.slice(-3)!='}]}') chunkAcc += value
+            else chunkAcc = value
+            console.log(chunkAcc)
+            for(let val of chunkAcc.split(`{"id"`)) {
                 if(!val) continue
                 const {choices} = JSON.parse(`{"id"${val}`)
                 const {delta} = choices[0]
