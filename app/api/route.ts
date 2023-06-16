@@ -47,9 +47,9 @@ export async function POST(req: Request): Promise<Response> {
         // .map((line) => { console.log(line); return JSON.parse(line) });
 
         for (const parsedLine of parsedLines) {
-          const { choices } = parsedLine;
-          const { delta } = choices[0];
-          const { content } = delta;
+          // const { choices } = parsedLine;
+          // const { delta } = choices[0];
+          const content = parsedLine;
           if (content) {
             controller.enqueue(encoder.encode(content))
           }
