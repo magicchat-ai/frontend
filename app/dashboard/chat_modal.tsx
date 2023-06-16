@@ -76,11 +76,13 @@ const ChatModal = (props: PropsType) => {
             else {
                 chunkAcc = value
                 console.log(chunkAcc)
-                for(let val of chunkAcc.split(`{"id"`)) {
+                // @ts-expect-error
+                for(let val of chunkAcc.matchAll(/\"content\"\:\"(.*)\"\}/gm)) {
                     if(!val) continue
-                    const {choices} = JSON.parse(`{"id"${val}`)
-                    const {delta} = choices[0]
-                    const {content} = delta
+                    // const {choices} = JSON.parse(`{"id"${val}`)
+                    // const {delta} = choices[0]
+                    // const {content} = delta
+                    const content = val[1]
                     if(content) {
                         modifiedChat[modifiedChat.length - 1].content += content
                         setMessageTrigger((state: number) => -state)
