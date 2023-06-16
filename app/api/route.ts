@@ -68,6 +68,7 @@ export async function POST(req: Request): Promise<Response> {
       headers: {
       "content-type": "text/plain",
       "Cache-Control": "no-cache",
+      "Access-Control-Allow-Origin": "*",
       },
     });
   }

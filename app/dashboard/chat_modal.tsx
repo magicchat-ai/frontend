@@ -50,7 +50,7 @@ const ChatModal = (props: PropsType) => {
     
         setChatList(newChats)
         setPrompt('')
-        setMessageTrigger((state) => -state)
+        setMessageTrigger((state: number) => -state)
 
         let modifiedChat = newChats.concat([{'role': 'AI', 'content': ''}])
         setChatList(modifiedChat)
@@ -72,18 +72,21 @@ const ChatModal = (props: PropsType) => {
             // @ts-expect-error
             const { value, done } = await reader.read()
             if (done) break
-            if(value.slice(-3)!='}]}') chunkAcc += value
-            else chunkAcc = value
-            console.log(chunkAcc)
-            for(let val of chunkAcc.split(`{"id"`)) {
-                if(!val) continue
-                const {choices} = JSON.parse(`{"id"${val}`)
-                const {delta} = choices[0]
-                const {content} = delta
-                if(content) {
-                    modifiedChat[modifiedChat.length - 1].content += content
-                    setMessageTrigger((state: number) => -state)
+            if(value.slice(-2)!==']}') chunkAcc += value
+            else {
+                chunkAcc = value
+                console.log(chunkAcc)
+                for(let val of chunkAcc.split(`{"id"`)) {
+                    if(!val) continue
+                    const {choices} = JSON.parse(`{"id"${val}`)
+                    const {delta} = choices[0]
+                    const {content} = delta
+                    if(content) {
+                        modifiedChat[modifiedChat.length - 1].content += content
+                        setMessageTrigger((state: number) => -state)
+                    }
                 }
+                chunkAcc = ''
             }
             // const { choices } = JSON.parse(value.trim())
             // const { delta } = choices[0];
