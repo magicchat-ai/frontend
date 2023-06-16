@@ -73,13 +73,23 @@ const ChatModal = (props: PropsType) => {
             const { value, done } = await reader.read()
             if (done) break
             console.log(value)
+            for(let val of value.split(`{"id"`)) {
+                if(!val) continue
+                const {choices} = JSON.parse(`{"id"${val}`)
+                const {delta} = choices[0]
+                const {content} = delta
+                if(content) {
+                    modifiedChat[modifiedChat.length - 1].content += content
+                    setMessageTrigger((state: number) => -state)
+                }
+            }
             // const { choices } = JSON.parse(value.trim())
             // const { delta } = choices[0];
             // const { content } = delta
-            modifiedChat[modifiedChat.length - 1].content += value
+            
             // setChunkRender((state) => !state)
             // setTriggerScroll((state) => !state)
-            setMessageTrigger((state: number) => -state)
+            
         }
 
         setPrompt('')

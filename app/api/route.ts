@@ -47,11 +47,11 @@ export async function POST(req: Request): Promise<Response> {
         // .map((line) => { console.log(line); return JSON.parse(line) });
 
         for (const parsedLine of parsedLines) {
-          const { choices } = JSON.parse(parsedLine);
-          const { delta } = choices[0];
-          const { content } = delta;
-          if (content) {
-            controller.enqueue(encoder.encode(content))
+          // const { choices } = JSON.parse(parsedLine);
+          // const { delta } = choices[0];
+          // const { content } = delta;
+          if (parsedLine) {
+            controller.enqueue(encoder.encode(parsedLine))
           }
         }
       },
