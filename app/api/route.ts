@@ -44,7 +44,7 @@ export async function POST(req: Request): Promise<Response> {
         const lines = chunk.split(`\n`);
         const parsedLines = lines.map((line) => {return line.replace(/^data: /, "").trim()})
         .filter((line) => {return line !== "" && line !== "[DONE]"})
-        .map((line) => { return JSON.parse(line) });
+        .map((line) => { console.log(line); return JSON.parse(line) });
 
         for (const parsedLine of parsedLines) {
           const { choices } = parsedLine;
