@@ -72,24 +72,27 @@ const ChatModal = (props: PropsType) => {
             // @ts-expect-error
             const { value, done } = await reader.read()
             if (done) break
-            if(value.slice(-2)!==']}') chunkAcc += value
-            else {
-                chunkAcc = value
-                console.log(chunkAcc)
-                // @ts-expect-error
-                for(let val of chunkAcc.matchAll(/\"content\"\:\"(.*)\"\}/gm)) {
-                    if(!val) continue
-                    // const {choices} = JSON.parse(`{"id"${val}`)
-                    // const {delta} = choices[0]
-                    // const {content} = delta
-                    const content = val[1]
-                    if(content) {
-                        modifiedChat[modifiedChat.length - 1].content += content
-                        setMessageTrigger((state: number) => -state)
-                    }
-                }
-                chunkAcc = ''
-            }
+            console.log(value)
+            modifiedChat[modifiedChat.length - 1].content += value
+            setMessageTrigger((state: number) => -state)
+
+            // if(value.slice(-2)!==']}') chunkAcc += value
+            // else {
+            //     chunkAcc = value
+            //     console.log(chunkAcc)
+            //     // @ts-expect-error
+            //     for(let val of chunkAcc.matchAll(/\"content\"\:\"(.*)\"\}/gm)) {
+            //         if(!val) continue
+            //         // const {choices} = JSON.parse(`{"id"${val}`)
+            //         // const {delta} = choices[0]
+            //         // const {content} = delta
+            //         const content = val[1]
+            //         if(content) {
+                        
+            //         }
+            //     }
+            //     chunkAcc = ''
+            // }
             // const { choices } = JSON.parse(value.trim())
             // const { delta } = choices[0];
             // const { content } = delta
