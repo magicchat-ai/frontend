@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { useRouter } from 'next/navigation'
+import { signOut } from 'firebase/auth'
 import { Timestamp, getDoc, doc } from "firebase/firestore"
 import { db, auth, IAuthState } from '../../firebase'
 import NavBar from "../navbar"
@@ -38,8 +39,8 @@ const AccountPage = () => {
 			const docSnap = await getDoc(doc(db, "users", `${authState.user?.uid}`))
 			
 			const newUserData = {
-				'firstName': authState.user?.firstName,
-				'lastName': authState.user?.lastName,
+				'firstName': authState.user?.displayName?.split(' ')[0],
+				'lastName': authState.user?.displayName?.split(' ')[1],
 				'email': authState.user?.email,
 				'phoneNumber': authState.user?.phoneNumber,
 				'currBalance': docSnap.data()?.currBalance,
@@ -55,6 +56,11 @@ const AccountPage = () => {
     }
     else if(!authState.isSignedIn)
         router.push("/auth")
+
+    function handleLogout(e: any) {
+        signOut(auth)
+        router.push('/')
+    }
     
     const MyDetailsComponent = () => (<div className="w-full flex flex-col gap-y-4">
             <span className="flex text-2xl text-black font-bold">My details</span>
@@ -138,7 +144,9 @@ const AccountPage = () => {
                     <span className="text-black text-3xl font-semibold">My Acccount</span>
                     <span className="text-black">View or edit your account settings from here</span>
                 </div>
-                <button className="font-bold hover:bg-slate-300 cursor-pointer text-zinc-700 px-4 py-2 h-min rounded-md">
+                <button 
+                    className="font-bold hover:bg-slate-300 cursor-pointer text-zinc-700 px-4 py-2 h-min rounded-md"
+                    onClick={handleLogout}>
                     Logout
                 </button>
             </div>

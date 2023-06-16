@@ -3,7 +3,8 @@
 import * as React from 'react'
 import { useRouter } from 'next/navigation';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../firebase'
+import { setDoc, doc } from 'firebase/firestore'
+import { db, auth } from '../firebase'
 
 type PropsType = {
     loginUseState: boolean,
@@ -45,10 +46,14 @@ const Signup = (props: PropsType) => {
         }
         try {
             await createUserWithEmailAndPassword(auth, email, password)
-            .then((userCred) => {
+            .then((userCred: any) => {
                 updateProfile(userCred.user, {
                     displayName: name
                 })
+                setDoc(doc(db, 'users', userCred.user.uid), {
+                    currBalance: 0,
+                    lastPayment: new Date()
+                }).catch((e: any) => console.log(e))
             })
         } 
         catch (err) {
