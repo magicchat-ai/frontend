@@ -56,14 +56,14 @@ const ChatModal = (props: PropsType) => {
         let modifiedChat = newChats.concat([{'role': 'AI', 'content': ''}])
         setChatList(modifiedChat)
 
-        let response =  await fetch('/api/generate', {
+        let response =  await fetch('/api', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
               'context': props.first_response,
-              'question': question,
+              'prompt': question,
             })
         });
 

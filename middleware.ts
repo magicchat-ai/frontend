@@ -1,10 +1,9 @@
 // MiddleWare to handle requests to and fro client and server
-import { Readable } from 'stream';
-import { NextResponse, NextRequest } from 'next/server'
+import { NextRequest } from 'next/server'
 
 export const config = {
-    // runtime: 'experimental-edge',
-    matcher: '/api/:path*',
+    runtime: 'experimental-edge',
+    matcher: '/appi/:path*',
 }
 
 type IRequestArgs = {
