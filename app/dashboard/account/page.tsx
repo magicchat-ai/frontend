@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useRouter } from 'next/navigation'
-import { signOut } from 'firebase/auth'
+import { signOut, sendPasswordResetEmail, sendEmailVerification } from 'firebase/auth'
 import { Timestamp, getDoc, doc } from "firebase/firestore"
 import { db, auth, IAuthState } from '../../firebase'
 import NavBar from "../navbar"
@@ -62,6 +62,18 @@ const AccountPage = () => {
         router.push('/')
     }
     
+    function handleResendEmail(e: any) {
+        sendEmailVerification(authState.user)
+        .then((e: any) => alert('Sent email!'))
+        .catch((e: any) => alert('Error sending email.'))
+    }
+
+    function handleResetPassword(e: any) {
+        sendPasswordResetEmail(auth, authState.user.email)
+        .then((e: any) => alert('Sent Link on registered email!'))
+        .catch((e: any) => alert('Error sending reset link.'))
+    }
+
     const MyDetailsComponent = () => (<div className="w-full flex flex-col gap-y-4">
             <span className="flex text-2xl text-black font-bold">My details</span>
             <span className="flex text-black font-semibold border-b py-2 border-slate-200 w-full">
@@ -82,7 +94,7 @@ const AccountPage = () => {
                 <div className="flex flex-col">
                     <span className="flex flex-row justify-between gap-x-2 max-w-[30em] flex-wrap gap-y-2">
                         <label className="text-black">Email</label>
-                        <a className="text-sm text-blue-600 font-bold cursor-pointer">Resend Verification Email</a>
+                        <a className="text-sm text-blue-600 font-bold cursor-pointer" onClick={handleResendEmail}>Resend Verification Email</a>
                     </span>
                     <input type="email" className="w-[15em] bg-slate-200 text-black rounded-md p-2" placeholder={userData?.email} disabled/>
                 </div>
@@ -101,7 +113,9 @@ const AccountPage = () => {
             </span>
 
             <div className="flex flex-col py-4">
-                <button className="shadow-lg shadow-slate py-2 px-6 rounded-md text-white bg-red-600 max-w-fit hover:bg-red-700">Reset Password</button>
+                <button 
+                    onClick={handleResetPassword}
+                    className="shadow-lg shadow-slate py-2 px-6 rounded-md text-white bg-red-600 max-w-fit hover:bg-red-700">Reset Password</button>
                 <span className="text-sm font-bold text-slate-600">sends a password reset email</span>
             </div>
         </div>)
