@@ -3,7 +3,7 @@ import { Readable } from 'stream';
 import { NextResponse, NextRequest } from 'next/server'
 
 export const config = {
-    runtime: 'experimental-edge',
+    runtime: 'edge',
     matcher: '/api/:path*',
 }
 
