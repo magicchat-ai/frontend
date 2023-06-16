@@ -20,7 +20,6 @@ const ChatModal = (props: PropsType) => {
     const [prompt, setPrompt] = React.useState('')
 
     React.useEffect(() => {
-        console.log("triggered")
         // @ts-expect-error
         scrollIntoView(bottomRef.current, {
           scrollMode: 'if-needed',
@@ -73,10 +72,14 @@ const ChatModal = (props: PropsType) => {
             // @ts-expect-error
             const { value, done } = await reader.read()
             if (done) break
+            console.log(value)
+            // const { choices } = JSON.parse(value.trim())
+            // const { delta } = choices[0];
+            // const { content } = delta
             modifiedChat[modifiedChat.length - 1].content += value
             // setChunkRender((state) => !state)
             // setTriggerScroll((state) => !state)
-            setMessageTrigger((state) => -state)
+            setMessageTrigger((state: number) => -state)
         }
 
         setPrompt('')

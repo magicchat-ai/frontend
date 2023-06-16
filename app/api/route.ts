@@ -40,16 +40,16 @@ export async function POST(req: Request): Promise<Response> {
           controller.close()
         }
         // Massage and parse the chunk of data
-        const chunk = decoder.decode(value);
-        const lines = chunk.split(`\n`);
-        const parsedLines = lines.map((line) => {return line.replace(/^data: /, "").trim()})
-        .filter((line) => {return line !== "" && line !== "[DONE]"})
+        const chunk = decoder.decode(value)
+        const lines = chunk.split(`\n`)
+        const parsedLines = lines.map((line) => line.replace(/^data: /, "").trim())
+        .filter((line) => line !== "" && line !== "[DONE]")
         // .map((line) => { console.log(line); return JSON.parse(line) });
 
         for (const parsedLine of parsedLines) {
-          // const { choices } = parsedLine;
-          // const { delta } = choices[0];
-          const content = parsedLine;
+          const { choices } = JSON.parse(parsedLine);
+          const { delta } = choices[0];
+          const { content } = delta;
           if (content) {
             controller.enqueue(encoder.encode(content))
           }
@@ -65,10 +65,10 @@ export async function POST(req: Request): Promise<Response> {
 
     return new Response(resultStream, {
       status: 200,
-      // headers: {
-      // "content-type": "text/plain",
-      // "Cache-Control": "no-cache",
-      // },
+      headers: {
+      "content-type": "text/plain",
+      "Cache-Control": "no-cache",
+      },
     });
   }
   catch(error) {
