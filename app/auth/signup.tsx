@@ -76,7 +76,7 @@ const Signup = (props: PropsType) => {
                 Let your kids talk to an AI avatar today.
             </p>
 
-            <button className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-black bg-white-700 rounded-lg lg-google-btn">
+            <button className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center border border-slate-400 text-black bg-slate-100 rounded-lg lg-google-btn">
                 Sign up with Google
             </button>
 
@@ -87,12 +87,12 @@ const Signup = (props: PropsType) => {
             <div className="flex flex-col">
                 <form onSubmit={handleSignup} className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
-                        {isError && <span className="w-full rounded-md items-center text-white bg-red-500">{errorMessage}</span>}
+                        {isError && <span className="w-full rounded-md items-center text-white bg-red-500 px-2 py-2 items-center text-center">{errorMessage}</span>}
                         <input 
                             type="text" 
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-2 py-2 border-b border-slate-600, text-black" 
+                            className="w-full px-2 py-2 border-b border-slate-400 text-black" 
                             placeholder="Name" 
                             required/>
                         <input 
@@ -110,7 +110,7 @@ const Signup = (props: PropsType) => {
                             placeholder="Password" 
                             required/>
                         <p className="flex flex-row gap-x-1 text-sm mt-4 ms-2 text-black">
-                            <input type="checkbox" ref={checkbox} className="checked:bg-blue-500" required/>
+                            <input type="checkbox" ref={checkbox} checked className="checked:bg-blue-500" required/>
                             I agree to the <a href="#" className="text-blue-500">terms and conditions</a>
                         </p>
                     </div>

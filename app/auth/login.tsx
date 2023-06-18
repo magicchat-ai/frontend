@@ -52,7 +52,7 @@ const Login = (props: PropsType) => {
     }
 
     return (
-        <div className="flex mx-auto my-auto max-w-[450px] bg-white px-10 py-8 rounded-lg justify-center self-center flex-col">
+        <div className="flex mx-auto my-auto max-w-[450px] bg-white px-10 py-8 rounded-lg justify-center w-full self-center flex-col">
             <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight text-black font-bold dark:text-black"> 
                 Sign in to your account 
             </h1>
@@ -61,7 +61,7 @@ const Login = (props: PropsType) => {
                 Continue with Google or enter your details
             </p>
 
-            <button className="inline-flex items-center justify-center px-4 py-2 text-center text-black font-bold bg-white-700 rounded-lg rounded-md w-full border border-slate-500 hover:shadow hover:shodow-slate-200">
+            <button className="inline-flex items-center justify-center px-4 py-2 text-center text-black rounded-lg rounded-md w-full border border-slate-400 bg-slate-100 hover:shadow hover:shodow-slate-200">
                 Log in with Google
             </button>
 
