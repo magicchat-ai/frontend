@@ -90,7 +90,7 @@ const Dashboard = () => {
 
 			<NavBar />
 
-			<div className="flex w-full justify-center w-screen">
+			<div className="flex w-full justify-center px-2 w-screen">
 				<div className="flex flex-col max-w-screen-lg shadow-md shadow-slate-600 my-8 rounded-xl bg-center w-full bg-[url('../public/assets/OpL1im6U7OFk.png')] ">
 					<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-8 justify-center self-center text-white gap-y-4 backdrop-brightness-50">
 						<span className="flex flex-row text-xl">
@@ -122,7 +122,7 @@ const Dashboard = () => {
 				</div>
 			</div>
 
-			<div className={`flex w-full w-screen justify-center mb-12`}>
+			<div className={`flex w-full w-screen justify-center px-2 mb-12`}>
 				<div className="flex flex-col max-w-screen-lg my-8 rounded-xl w-full bg-[url('../public/assets/Sf5qPt6dcBOX.png')] bg-center">
 					<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-50">
 						<div className="flex flex-row text-white gap-x-2 font-bold text-lg">
@@ -143,7 +143,7 @@ const Dashboard = () => {
 							MagicChat
 						</div>
 						<div className="flex flex-col items-center justify-center max-w-screen-sm ">
-							<div className="flex text-white text-lg self-center font-bold ">
+							<div className="flex text-white text-lg self-center items-center text-center font-bold ">
 								Don&apos;t miss chance talking to your favourite AI character
 							</div>
 							<span className="flex flex-row align-center text-[#C7C7C7] font-normal text-center text-[#c7c7c7] self-center">
@@ -151,7 +151,7 @@ const Dashboard = () => {
 								bunny, Batman, and many more.
 							</span>
 						</div>
-						<div className="flex flex-row flex-wrap gap-x-4 gap-y-4 font-bold">
+						<div className="flex flex-row flex-wrap gap-x-4  items-center justify-center gap-y-4 font-bold">
 							<button className="flex border-2 px-6 py-2 bg-[#1e1e1e] hover:bg-[#4E4E4E] rounded-lg text-white">
 								Get started
 							</button>
