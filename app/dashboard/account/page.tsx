@@ -7,6 +7,7 @@ import { getDoc, doc } from "firebase/firestore"
 import { db, auth, IAuthState } from '../../firebase'
 import NavBar from "../navbar"
 import Footer from "../footer"
+import Loading from "@/app/loading"
 
 type IUserData = {
     firstName: string,
@@ -52,7 +53,7 @@ const AccountPage = () => {
 	}, [authState.user])
 
     if (authState.pending) {
-        return (<h1> loading... </h1>)
+        return (<Loading />)
     }
     else if(!authState.isSignedIn)
         router.push("/auth")

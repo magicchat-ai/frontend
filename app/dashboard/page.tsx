@@ -8,6 +8,7 @@ import Footer from "./footer";
 import ProductCard from "./product_card";
 import PopupModal from "./popup_modal";
 import { collection, getDocs } from "firebase/firestore";
+import Loading from "../loading";
 
 type ICharacterType = {
 	name: string,
@@ -70,7 +71,7 @@ const Dashboard = () => {
 	)
 
     if (authState.pending) {
-        return (<h1> loading... </h1>)
+        return (<Loading />)
     }
     else if(!authState.isSignedIn)
         router.push("/auth")
