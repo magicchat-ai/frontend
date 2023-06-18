@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useRouter } from 'next/navigation'
 import { signOut, sendPasswordResetEmail, sendEmailVerification } from 'firebase/auth'
-import { Timestamp, getDoc, doc } from "firebase/firestore"
+import { getDoc, doc } from "firebase/firestore"
 import { db, auth, IAuthState } from '../../firebase'
 import NavBar from "../navbar"
 import Footer from "../footer"
@@ -81,7 +81,7 @@ const AccountPage = () => {
             </span>
 
             <form className="flex flex-col flex-wrap gap-y-4">
-                <div className="flex flex-row gap-x-3 gap-y-4">
+                <div className="flex flex-row gap-x-3 flex-wrap gap-y-4">
                     <span className="flex flex-col">
                         <label className="text-black"> First Name </label>
                         <input type="text" placeholder={userData?.firstName} className="w-[10em] bg-slate-200 text-black rounded-md p-2" disabled/>
@@ -135,9 +135,9 @@ const AccountPage = () => {
                 If you do not see updated balance beyond this period, please contact support.
             </span>
 
-            <div className="flex flex-row gap-x-10">
+            <div className="flex flex-row flex-wrap gap-x-10">
                 <label className="font-bold text-black">Last Payment Time</label>
-                <input type="text" className="px-2 py-1 bg-slate-200 w-[20em] rounded-md" placeholder={userData?.lastPayment.toString()} disabled/>
+                <input type="text" className="px-2 py-1 bg-slate-200 w-[20em] rounded-md" placeholder={new Date(userData?.lastPayment?.seconds).toString()} disabled/>
             </div>
 
             <button className="flex rounded-md shadow-lg shadow-slate py-2 px-4 bg-blue-600 text-white font-semibold w-fit hover:bg-blue-700">
@@ -164,7 +164,7 @@ const AccountPage = () => {
                     Logout
                 </button>
             </div>
-            <div className="flex flex-row gap-x-4 gap-y-4 px-8">
+            <div className="flex flex-row gap-x-4 flex-wrap gap-y-4 px-8">
                 <div className="flex flex-col gap-x-8 w-full max-w-[14em]">
                     <ul className="flex flex-col gap-y-4 w-full">
                         <li className={`px-4 rounded-md py-2 cursor-pointer font-bold ${(tab===0)?'text-blue-600 bg-blue-200 hover:bg-blue-300':'text-slate-600 hover:bg-slate-200'}`} onClick={() => setTab(0)}>My details</li>

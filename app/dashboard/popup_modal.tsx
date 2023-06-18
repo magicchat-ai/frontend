@@ -73,19 +73,21 @@ const PopupModal = (props: PropsType) => {
 				</span>
 			</div>
 
-			<div className="flex flex-row justify-between">
+			<div className="flex flex-row justify-between flex-wrap gap-y-6">
 				<div className="flex flex-col w-full max-w-screen-md gap-y-4">
 					<Image alt={props.name} src={data?.image_url} className="py-6 px-2 self-center" width="700" height="300"/>
 
 					<div className="flex flex-col px-2">
-						<div className="flex flex-row justify-between">
+						<div className="flex flex-row justify-between flex-wrap gap-y-2">
 							<span className="flex text-grey text-sm">
-								<div className="text-black font-bold flex text-4xl">${props.price}</div>
+								<div className="text-black font-bold flex text-2xl md:text-4xl">
+									${props.price}
+								</div>
 								/5 mins
 							</span>
 							<button
 								onClick={() => setChat({ 'name': props.name, 'setChat': setChat })}
-								className="rounded-full bg-[#D60235] text-white text-md py-2 px-6 justify-between flex-wrap hover:bg-[#C2012F]"
+								className="rounded-md bg-[#D60235] text-white text-md py-2 px-6 justify-between flex-wrap hover:bg-[#C2012F]"
 							>
 								Talk to {props.name}
 							</button>
@@ -105,7 +107,7 @@ const PopupModal = (props: PropsType) => {
 						})}
 					</div>
 
-					<div className="flex flex-row py-4 justify-between flex-wrap">
+					<div className="flex flex-row py-4 justify-between gap-y-2 flex-wrap">
 						<span className="flex text-black font-bold text-xl max-w-md">
 							{data?.special_message}
 						</span>

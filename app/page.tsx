@@ -6,7 +6,7 @@ import Footer from './dashboard/footer'
 
 export default function Home() {
   return (
-		<main className="max-w-full w-screen overflow-x-clip">
+		<main className="max-w-full bg-white w-screen overflow-x-clip">
 			<div className="sticky w-full top-0 transition-all py-1.5 md:py-0.5 duration-200 z-50 text-[#ffffff] bg-[#340464] w-screen">
 				<div className="mx-auto sm:px-7 px-4 dark:text-white w-full ">
 					<div className="relative flex items-center justify-between py-3">
@@ -141,24 +141,24 @@ export default function Home() {
 								</div>
 							</div>
 
-							<div className="flex no-scrollbar mt-10 rounded-lg flex-row gap-x-7 px-4 py-4 h-[22em] bg-transparent overflow-x-scroll">
+							<div className="flex no-scrollbar mt-10 rounded-lg flex-row gap-x-7 px-4 py-4 h-[16em] md:h-[22em] bg-transparent overflow-x-scroll">
 
-								<div className="flex flex-col min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1600129979988-634770ae8b67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hyaXN0bWFzJTIwa2lkc3xlbnwwfDB8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60')] bg-no-repeat bg-center bg-cover">
+								<div className="flex flex-col min-w-[20em] md:min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1600129979988-634770ae8b67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hyaXN0bWFzJTIwa2lkc3xlbnwwfDB8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60')] bg-no-repeat bg-center bg-cover">
 									<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-70">
 									</div>
 								</div>
 
-								<div className="flex flex-col min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2lkcyUyMGJpcnRoZGF5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60')] bg-no-repeat bg-center bg-cover">
+								<div className="flex flex-col min-w-[20em] md:min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2lkcyUyMGJpcnRoZGF5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60')] bg-no-repeat bg-center bg-cover">
 									<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-70">
 									</div>
 								</div>
 
-								<div className="flex flex-col min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1620428268482-cf1851a36764?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=809&q=80')] bg-no-repeat bg-center bg-cover">
+								<div className="flex flex-col min-w-[20em] md:min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1620428268482-cf1851a36764?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=809&q=80')] bg-no-repeat bg-center bg-cover">
 									<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-70">
 									</div>
 								</div>
 
-								<div className="flex flex-col min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1549815587-9757d02af740?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80')] bg-no-repeat bg-center bg-cover">
+								<div className="flex flex-col min-w-[20em] md:min-w-[30em] rounded-xl h-full bg-[url('https://images.unsplash.com/photo-1549815587-9757d02af740?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80')] bg-no-repeat bg-center bg-cover">
 									<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-70">
 									</div>
 								</div>
@@ -169,19 +169,19 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center py-32 self-center gap-y-12 justify-self-center bg-white dark:text-black">
-				<div className="flex flex-row font-bold text-4xl max-w-screen-md justify-center self-center content-center justify-items-center text-center">
+			<div className="flex flex-col items-center py-32 self-center gap-y-12 justify-self-center bg-white dark:text-black px-2">
+				<div className="flex flex-row font-bold leading-relaxed text-3xl px-4 mb-8 md:mb-6 md:text-4xl max-w-screen-md justify-center self-center content-center justify-items-center text-center">
 					Unleash Your Imagination with AI-Powered Avatar Talk!
 				</div>
 				<div
-					className="flex flex-row flex-wrap gap-x-12 gap-y-12 max-w-screen-lg self-center px-20 py-20 rounded-lg bg-black"
+					className="flex flex-row flex-wrap gap-x-12 gap-y-12 max-w-screen-lg self-center px-10 md:px-20 py-20 rounded-lg bg-black"
 					style={{
 						background:
 							"radial-gradient(85.14% 577.3% at 8.67% 46.68%, #1A16E2 0%, #031DA2 0%, #9732E6 45.18%, #9C0935 92.96%)",
 					}}
 				>
-					<div className="flex flex-col w-1/2 justify-between gap-y-12 flex-wrap min-w-[260px] max-w-[380px]">
-						<div>
+					<div className="flex flex-col md:w-1/2 justify-between gap-y-12 flex-wrap min-w-[260px] max-w-[380px]">
+						<div className="flex flex-col gap-y-4">
 							<h2 className="flex text-white text-lg font-bold items-center gap-x-2">
 								<svg
 									width="16"
@@ -204,7 +204,7 @@ export default function Home() {
 								dreams.
 							</p>
 						</div>
-						<div>
+						<div className="flex flex-col gap-y-4">
 							<h2 className="flex text-white text-lg font-bold items-center gap-x-2 ">
 								<svg
 									width="16"
@@ -229,7 +229,7 @@ export default function Home() {
 						</div>
 					</div>
 					<div className="flex flex-col w-1/2 justify-between gap-y-12 min-w-[260px] max-w-[380px] flex-wrap">
-						<div>
+						<div className="flex flex-col gap-y-4">
 							<h2 className="flex text-white text-lg font-bold items-center gap-x-2">
 								<svg
 									width="16"
@@ -252,7 +252,7 @@ export default function Home() {
 								realism.
 							</p>
 						</div>
-						<div>
+						<div className="flex flex-col gap-y-4">
 							<h2 className="flex text-white text-lg font-bold items-center gap-x-2">
 								<svg
 									width="16"
@@ -298,7 +298,7 @@ export default function Home() {
 					</defs>
 				</svg>
 
-				<div className="flex flex-row flex-wrap justify-between gap-y-8 py-8 px-12">
+				<div className="flex flex-row flex-wrap justify-between gap-y-12 gap-x-8 py-8 px-4 md:px-12">
 					<div className="flex flex-col max-w-max justify-center gap-8">
 						<h2 className="flex text-4xl font-bold w-80">
 							characters you love are just a chat away
