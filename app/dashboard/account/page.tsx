@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useRouter } from 'next/navigation'
 import { signOut, sendPasswordResetEmail, sendEmailVerification } from 'firebase/auth'
-import { getDoc, doc } from "firebase/firestore"
+import { Timestamp, getDoc, doc } from "firebase/firestore"
 import { db, auth, IAuthState } from '../../firebase'
 import NavBar from "../navbar"
 import Footer from "../footer"
@@ -15,7 +15,7 @@ type IUserData = {
     email: string,
     phoneNumber: string,
     currBalance: number,
-    lastPayment: Timestamp,
+    lastPayment: string,
 }
 
 const AccountPage = () => {
@@ -45,7 +45,7 @@ const AccountPage = () => {
 				'email': authState.user?.email,
 				'phoneNumber': authState.user?.phoneNumber,
 				'currBalance': docSnap.data()?.currBalance,
-				'lastPayment': docSnap.data()?.lastPayment,
+				'lastPayment': new Date(docSnap.data()?.lastPayment.seconds).toString(),
 			}
 			setUserData(newUserData)
 		}
@@ -138,7 +138,7 @@ const AccountPage = () => {
 
             <div className="flex flex-row flex-wrap gap-x-10">
                 <label className="font-bold text-black">Last Payment Time</label>
-                <input type="text" className="px-2 py-1 bg-slate-200 w-[20em] rounded-md" placeholder={new Date(userData?.lastPayment?.seconds).toString()} disabled/>
+                <input type="text" className="px-2 py-1 bg-slate-200 w-[20em] rounded-md" placeholder={userData?.lastPayment} disabled/>
             </div>
 
             <button className="flex rounded-md shadow-lg shadow-slate py-2 px-4 bg-blue-600 text-white font-semibold w-fit hover:bg-blue-700">
