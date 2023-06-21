@@ -24,7 +24,7 @@ export async function POST(req: Request): Promise<Response> {
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
-    max_tokens: 200,
+    max_tokens: 100,
     stream: true,
     n: 1,
   };
@@ -38,19 +38,10 @@ export async function POST(req: Request): Promise<Response> {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY ?? ""}`,
+      Authorization: `Bearer ${process.env.OPENAI_KEY ?? ""}`,
     },
     method: "POST",
-    body: JSON.stringify({
-      'model': "gpt-3.5-turbo",
-      'messages': [
-        {'role': 'system', 'content': `You are talking to a kid as ${context}`},
-        {'role': 'user', 'content': prompt}
-      ],
-      top_p: 1,
-      max_tokens: 200,
-      stream: true,
-    }),
+    body: JSON.stringify(payload),
   });
 
   const stream = new ReadableStream({
@@ -89,7 +80,6 @@ export async function POST(req: Request): Promise<Response> {
     headers: {
     "content-type": "text/plain",
     "Cache-Control": "no-cache",
-    "Access-Control-Allow-Origin": "*",
     },
   });
 };

@@ -49,6 +49,7 @@ const AccountPage = () => {
 			}
 			setUserData(newUserData)
 		}
+        
 		getData()
 	}, [authState.user])
 
