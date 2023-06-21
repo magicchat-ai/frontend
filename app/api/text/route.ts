@@ -1,11 +1,4 @@
 import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
-const updateSubs = import("../update-subs/route");
-
-// async function OpenAIStream(payload: any) {
-  
-
-//   return stream;
-// }
 
 export const runtime = "edge"
 
@@ -37,6 +30,25 @@ export async function POST(req: Request): Promise<Response> {
 
   let counter = 0
   let consumption = 0
+  let subs_balance = 0
+  
+  const subs = await fetch(`https://magicchat-api.onrender.com/get-subs?user_id=${user_id}`, {
+    method: 'GET',
+    headers: {"Content-Type": "application/json"},
+  })
+  .then((res) => res.json())
+  .then((data) => subs_balance = data.data)
+
+  // if subscription is in negative
+  if(subs && subs_balance<=0) {
+    return new Response("ZeroBalance. Please recharge to enjoy services", {
+      status: 400,
+      headers: {
+        "content-type": "text/plain",
+        "Cache-Control": "no-cache",
+      }
+    })
+  }
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
@@ -54,13 +66,20 @@ export async function POST(req: Request): Promise<Response> {
           // @ts-expect-error
           const data = event.data;
           if (data === "[DONE]") {
-            await (await updateSubs).POST(
-              new Request(JSON.stringify({user_id: user_id, consumption: consumption}))
-            )
+            await fetch(`https://magicchat-api.onrender.com/update-subs?&user_id=${user_id}&consumption=${consumption}&current_balance=${subs_balance}`, {
+              method: 'GET',
+              headers: {"Content-Type": "application/json"}
+            })
             controller.close();
             return;
           }
           try {
+            if(subs && subs_balance<=0) {
+              controller.close()
+              throw new Error("ZeroBalance. Please recharge to enjoy services")
+              return;
+            }
+
             const json = JSON.parse(data);
             const {content} = json.choices[0].delta;
             if (counter < 2 && content && (content.match(/\n/) || []).length) {
@@ -68,7 +87,7 @@ export async function POST(req: Request): Promise<Response> {
             }
             const queue = encoder.encode(content);
             if(queue) {
-              consumption += content?.length
+              if(content) consumption += content.length
               controller.enqueue(queue);
             }
             counter++;
