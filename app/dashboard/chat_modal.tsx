@@ -8,6 +8,7 @@ type PropsType = {
     chat_cover_bg: string | undefined,
 	setChat: any,
     first_response: string | undefined,
+    user_id: string | undefined,
 };
 
 const ChatModal = (props: PropsType) => {
@@ -46,7 +47,6 @@ const ChatModal = (props: PropsType) => {
         let question = prompt
         let newChat = {"role": 'user', "content": question}
         let newChats = chatList.concat([newChat])
-        
     
         setChatList(newChats)
         setPrompt('')
@@ -63,6 +63,7 @@ const ChatModal = (props: PropsType) => {
             body: JSON.stringify({
               'context': props.first_response,
               'prompt': question,
+               user_id: props.user_id,
             })
         });
 

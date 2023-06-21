@@ -67,6 +67,7 @@ const Dashboard = () => {
 			price={data.price}
 			uuid={data.uuid}
 			setModal={setModal}
+			user_id={authState.user?.uid}
 		/>
 	)
 
@@ -86,6 +87,7 @@ const Dashboard = () => {
 					price={modal?.price}
 					uuid={modal?.uuid}
 					setModal={setModal}
+					user_id={authState.user?.uid}
 				/>
 			)}
 

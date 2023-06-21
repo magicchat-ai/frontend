@@ -1,4 +1,5 @@
 import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
+const updateSubs = import("../update-subs/route");
 
 // async function OpenAIStream(payload: any) {
   
@@ -9,9 +10,10 @@ import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser
 export const runtime = "edge"
 
 export async function POST(req: Request): Promise<Response> {
-  const { prompt, context } = (await req.json()) as {
+  const { prompt, context, user_id } = (await req.json()) as {
     prompt?: string;
     context?: string;
+    user_id: string
   };
 
   const payload = {
@@ -33,7 +35,8 @@ export async function POST(req: Request): Promise<Response> {
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
 
-  let counter = 0;
+  let counter = 0
+  let consumption = 0
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
@@ -46,11 +49,14 @@ export async function POST(req: Request): Promise<Response> {
 
   const stream = new ReadableStream({
     async pull(controller) {
-      function onParse(event: ParsedEvent | ReconnectInterval) {
+      async function onParse(event: ParsedEvent | ReconnectInterval) {
         if (event) {
           // @ts-expect-error
           const data = event.data;
           if (data === "[DONE]") {
+            await (await updateSubs).POST(
+              new Request(JSON.stringify({user_id: user_id, consumption: consumption}))
+            )
             controller.close();
             return;
           }
@@ -61,7 +67,10 @@ export async function POST(req: Request): Promise<Response> {
               return;
             }
             const queue = encoder.encode(content);
-            if(queue) {controller.enqueue(queue);}
+            if(queue) {
+              consumption += content?.length
+              controller.enqueue(queue);
+            }
             counter++;
           } catch (e) {
             controller.error(e);

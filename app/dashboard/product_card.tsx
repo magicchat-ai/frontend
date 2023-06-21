@@ -9,7 +9,8 @@ type PropsType =  {
     tagline: string,
     price: number,
     uuid: string,
-    setModal: any
+    setModal: any,
+    user_id: string | undefined,
 }
 
 const ProductCard = (props: PropsType) => {
