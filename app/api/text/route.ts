@@ -24,7 +24,6 @@ export async function POST(req: Request): Promise<Response> {
     n: 1,
   };
 
-  // const stream = await OpenAIStream(payload);
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
 
