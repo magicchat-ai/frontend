@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^1.54.1",
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
@@ -19,6 +20,8 @@
     "eventsource-parser": "^1.0.0",
     "firebase": "^9.22.2",
     "firebase-admin": "^11.9.0",
+    "micro": "^10.0.1",
+    "micro-cors": "^0.1.1",
     "next": "^13.4.5",
     "openai": "^3.3.0",
     "postcss": "8.4.24",
@@ -27,6 +30,7 @@
     "scroll-into-view-if-needed": "^3.0.10",
     "sharp": "^0.32.1",
     "stream": "^0.0.2",
+    "stripe": "^12.10.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
   },

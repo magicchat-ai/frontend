@@ -3,8 +3,9 @@
 import * as React from "react"
 import { useRouter } from 'next/navigation'
 import { signOut, sendPasswordResetEmail, sendEmailVerification } from 'firebase/auth'
-import { Timestamp, getDoc, doc } from "firebase/firestore"
+import { getDoc, doc } from "firebase/firestore"
 import { db, auth, IAuthState } from '../../firebase'
+import CheckoutForm from "./stripe_form"
 import NavBar from "../navbar"
 import Footer from "../footer"
 import Loading from "@/app/loading"
@@ -50,7 +51,7 @@ const AccountPage = () => {
 			setUserData(newUserData)
 		}
         
-		getData()
+		if(authState.user) getData()
 	}, [authState.user])
 
     if (authState.pending) {
@@ -142,10 +143,9 @@ const AccountPage = () => {
                 <input type="text" className="px-2 py-1 bg-slate-200 w-[20em] rounded-md" placeholder={userData?.lastPayment} disabled/>
             </div>
 
-            <button className="flex rounded-md shadow-lg shadow-slate py-2 px-4 bg-blue-600 text-white font-semibold w-fit hover:bg-blue-700">
-                Recharge Now
-            </button>
-
+            <div className="flex flex-col flex-wrap">
+                <CheckoutForm email={authState.user?.email} />
+            </div>
         </div>
     )
     
