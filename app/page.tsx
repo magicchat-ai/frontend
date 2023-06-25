@@ -89,7 +89,7 @@ export default function Home() {
 									data-headlessui-state=""
 									id="headlessui-popover-button-:R1dl6:"
 								>
-									<span> Product </span>
+									<span> Pricing </span>
 								</button>
 							</div>
 						</nav>
@@ -99,7 +99,7 @@ export default function Home() {
 								rel="noopener noreferrer"
 								className="font-semibold text-sm px-4 h-10 bg-teal-8 hover:bg-teal-9 text-black focus-visible:shadow-button-focus-aqua group whitespace-nowrap tracking-[-0.01em] transition inline-flex items-center justify-center rounded-full bg-white hover:bg-opacity-90"
 							>
-								Get Started
+								Signup Now
 							</a>
 						</div>
 					</div>
