@@ -29,6 +29,8 @@ export async function POST(req: NextRequest) {
     if (event.type === 'payment_intent.succeeded') {
       const paymentIntent = event.data.object as Stripe.PaymentIntent
       console.log(`User ID: ${paymentIntent.metadata.user_id}`)
+      // also send a confirmation to update records in the backend on Render
+      await fetch("")
 
       console.log(`💰 PaymentIntent status: ${paymentIntent.status}`)
     } else if (event.type === 'payment_intent.payment_failed') {

@@ -68,12 +68,11 @@ const ChatModal = (props: PropsType) => {
         });
 
         let reader = response.body?.pipeThrough(new TextDecoderStream()).getReader()
-        let chunkAcc = ''
         while (true) {
             // @ts-expect-error
             const { value, done } = await reader.read()
             if (done) break
-
+            console.log(value)
             modifiedChat[modifiedChat.length - 1].content += value
             setMessageTrigger((state: number) => -state)            
         }
