@@ -17,8 +17,10 @@ export async function POST(req: NextRequest) {
       mode: 'payment',
       success_url: `${req.headers.get('origin')}/dashboard/account?success=true`,
       cancel_url: `${req.headers.get('origin')}/dashboard/account?canceled=true`,
-      metadata: {
-        user_id: user_id
+      payment_intent_data: {
+        metadata: {
+          user_id: user_id
+        }
       }
     });
     return NextResponse.redirect(session.url, {status: 303});
