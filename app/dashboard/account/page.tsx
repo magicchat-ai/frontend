@@ -144,7 +144,7 @@ const AccountPage = () => {
             </div>
 
             <div className="flex flex-col flex-wrap">
-                <CheckoutForm email={authState.user?.email} />
+                <CheckoutForm user_id={authState.user?.uid} />
             </div>
         </div>
     )

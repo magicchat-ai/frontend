@@ -1,8 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-
-import Cors from 'micro-cors'
+// import Cors from 'micro-cors'
 import Stripe from 'stripe'
-import { buffer } from 'micro'
+// import { buffer } from 'micro'
+import { NextRequest } from 'next/server'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
@@ -12,33 +11,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 const webhookSecret: string = process.env.STRIPE_WEBHOOK_SECRET!
 
 // Stripe requires the raw body to construct the event.
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
+export const runtime = "edge"
+const allowedOrigins = ['*']
 
-const cors = Cors({
-  allowMethods: ['POST', 'HEAD'],
-})
+export async function POST(req: NextRequest) {
+  const buf = await req.text()
+  const sig = req.headers.get('stripe-signature')!
 
-const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === 'POST') {
-    const buf = await buffer(req)
-    const sig = req.headers['stripe-signature']!
-
-    let event: Stripe.Event
-
-    try {
-      event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret)
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Unknown error'
-      // On error, log and return the error message.
-      if (err! instanceof Error) console.log(err)
-      console.log(`❌ Error message: ${errorMessage}`)
-      res.status(400).send(`Webhook Error: ${errorMessage}`)
-      return
-    }
+  let event: Stripe.Event
+  try {
+    event = stripe.webhooks.constructEvent(buf, sig, webhookSecret)
 
     // Successfully constructed event.
     console.log('✅ Success:', event.id)
@@ -46,6 +28,8 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Cast event data to Stripe object.
     if (event.type === 'payment_intent.succeeded') {
       const paymentIntent = event.data.object as Stripe.PaymentIntent
+      console.log(`User ID: ${paymentIntent.metadata.user_id}`)
+
       console.log(`💰 PaymentIntent status: ${paymentIntent.status}`)
     } else if (event.type === 'payment_intent.payment_failed') {
       const paymentIntent = event.data.object as Stripe.PaymentIntent
@@ -60,11 +44,21 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     // Return a response to acknowledge receipt of the event.
-    res.json({ received: true })
-  } else {
-    res.setHeader('Allow', 'POST')
-    res.status(405).end('Method Not Allowed')
+    return new Response(JSON.stringify({ received: true }), {
+      headers: {
+        'Access-Control-Allow-Origin': `${allowedOrigins}`
+      }
+    })
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error'
+    // On error, log and return the error message.
+    if (err! instanceof Error) console.log(err)
+    console.log(`❌ Error message: ${errorMessage}`)
+    return new Response(JSON.stringify({'Webhook Error': `${errorMessage}`}), {
+      status: 400,
+      headers: {
+        'Access-Control-Allow-Origin': `${allowedOrigins}`
+      }
+    })
   }
 }
-
-export default cors(webhookHandler as any)

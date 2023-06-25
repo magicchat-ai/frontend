@@ -20,10 +20,10 @@ export default function PreviewPage(props: any) {
   }, []);
 
   return (
-    <form action="/api/checkout_sessions" className="text-black" method="POST">
+    <form action={`/api/checkout_sessions`} className="text-black" method="POST">
       <section> 
-        Billed to: <input type="text" name="user_email" id="user_email" className="px-4 py-2 text-slate-500" value={props.email}/>
-        <button type="submit" role="link">
+        <input type="text" name="user_id" id="user_id" className="px-4 py-2 text-slate-500" value={props.user_id} hidden/>
+        <button type="submit">
           Recharge Now
         </button>
       </section>
