@@ -70,12 +70,12 @@ export default function Home() {
 									data-headlessui-state=""
 									id="headlessui-popover-button-:R15l6:"
 								>
-									<span> home </span>
+									<span> Home </span>
 								</button>
 							</div>
 							<a href="/about">
 								<div className="text-white hover:bg-white text-sm font-medium hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition flex items-center cursor-pointer">
-									about
+									About
 								</div>
 							</a>
 							<div
@@ -89,7 +89,7 @@ export default function Home() {
 									data-headlessui-state=""
 									id="headlessui-popover-button-:R1dl6:"
 								>
-									<span> product </span>
+									<span> Product </span>
 								</button>
 							</div>
 						</nav>

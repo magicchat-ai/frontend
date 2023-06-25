@@ -65,7 +65,7 @@ export async function POST(req: Request): Promise<Response> {
           // @ts-expect-error
           const data = event.data;
           if (data === "[DONE]") {
-            await fetch(`https://magicchat-api.onrender.com/update-subs?&user_id=${user_id}&consumption=${consumption}&current_balance=${subs_balance}`, {
+            fetch(`https://magicchat-api.onrender.com/update-subs?&user_id=${user_id}&consumption=${consumption}&current_balance=${subs_balance}`, {
               method: 'GET',
               headers: {"Content-Type": "application/json"}
             })
