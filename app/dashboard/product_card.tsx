@@ -17,15 +17,15 @@ const ProductCard = (props: PropsType) => {
     return (
         <div 
             onClick={() => props.setModal(props)}
-            className="flex cursor-pointer flex-col max-w-64 px-4 py-4 gap-y-2 hover:bg-slate-100 rounded-md ">
-            <div className="flex max-w-max mb-4 max-w-[240px] h-[280px]">
-                <Image alt={props.name} width="270" height="200" src={props.image_url} />
+            className="flex cursor-pointer flex-col max-w-64 gap-y-2 hover:shadow-md border-slate-200 border hover:shadow-slate-100 rounded-xl">
+            <div className="flex rounded-t-xl max-w-max mb-4 max-w-[220px] h-[240px]">
+                <Image alt={props.name} className="rounded-t-xl" width="270" height="200" src={props.image_url} />
             </div>
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between px-4">
                 <span className="flex text-black font-bold">{props.name}</span>
                 <span className="flex text-black font-bold">${props.price}</span>
             </div>
-            <div className="flex flex-col text-slate-600 dark:text-slate-600 text-sm">{props.tagline}</div>
+            <div className="flex flex-row max-w-[220px] text-slate-600 px-4 pb-4 flex-wrap dark:text-slate-600 text-sm">{props.tagline}</div>
         </div>
     )
 }

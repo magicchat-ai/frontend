@@ -172,7 +172,7 @@ const AccountPage = () => {
                     </ul>
                 </div>
 
-                <div className="flex shadow-lg shadow-slate mb-24 flex-col w-full py-8 px-8 rounded-md bg-white">
+                <div className="flex shadow-lg shadow-slate mb-24 flex-col w-full py-8 px-8 rounded-md bg-white max-w-screen-md">
                     {(tab===0 && <MyDetailsComponent />) || <MySubsComponent />}
                 </div>
             </div>

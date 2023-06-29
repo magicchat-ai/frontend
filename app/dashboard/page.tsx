@@ -94,7 +94,7 @@ const Dashboard = () => {
 			<NavBar />
 
 			<div className="flex w-full justify-center px-2 w-screen">
-				<div className="flex flex-col max-w-screen-lg shadow-md shadow-slate-600 my-8 rounded-xl bg-center w-full bg-[url('../public/assets/OpL1im6U7OFk.png')] ">
+				<div className="flex flex-col mx-4 lg:mx-12 shadow-md shadow-slate-600 my-8 rounded-xl bg-center w-full bg-[url('../public/assets/OpL1im6U7OFk.png')] ">
 					<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-8 justify-center self-center text-white gap-y-4 backdrop-brightness-50">
 						<span className="flex flex-row text-xl">
 							Talk to your favorite character.
@@ -114,9 +114,9 @@ const Dashboard = () => {
             </div> */}
 
 			<div className="flex w-full w-screen justify-center">
-				<div className="flex flex-col max-w-screen-lg my-8 rounded-xl w-full px-8 py-8 justify-center self-center gap-y-4">
+				<div className="flex flex-col mx-4 lg:mx-12 my-8 rounded-xl w-full px-8 py-8 justify-center self-center gap-y-4">
 					<div className="flex text-2xl max-w-screen-lg flex-start dark:text-black">
-						Most Popular
+						Most Popular Characters
 					</div>
 					<div className="flex flex-row max-w-max gap-x-8 justify-between gap-y-6 flex-wrap">
 						{/* @ts-expect-error */}
@@ -126,7 +126,7 @@ const Dashboard = () => {
 			</div>
 
 			<div className={`flex w-full w-screen justify-center px-2 mb-12`}>
-				<div className="flex flex-col max-w-screen-lg my-8 rounded-xl w-full bg-[url('../public/assets/Sf5qPt6dcBOX.png')] bg-center">
+				<div className="flex flex-col mx-4 lg:mx-12 my-8 rounded-xl w-full bg-[url('../public/assets/Sf5qPt6dcBOX.png')] bg-center">
 					<div className="w-full h-full flex flex-col justify-center rounded-xl px-8 py-12 items-center justify-center items-center self-center gap-y-12  backdrop-brightness-50">
 						<div className="flex flex-row text-white gap-x-2 font-bold text-lg">
 							<svg
