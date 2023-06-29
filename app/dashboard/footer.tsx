@@ -56,13 +56,13 @@ function Footer() {
 									Product{" "}
 								</span>
 								<span className="text-md font-semibold text-black">
-									<a href="#"> Overview </a>
+									<a href="/#about"> Overview </a>
 								</span>
 								<span className="text-md font-semibold text-black">
 									<a href="#"> Features </a>
 								</span>
 								<span className="text-md font-semibold text-black">
-									<a href="#"> Pricing </a>
+									<a href="/#pricing"> Pricing </a>
 								</span>
 							</div>
 							<div data-name="column-three" className="flex flex-col gap-y-3">
@@ -71,7 +71,7 @@ function Footer() {
 									Company{" "}
 								</span>
 								<span className="text-md font-semibold text-black">
-									<a href="#"> About </a>
+									<a href="/#about"> About </a>
 								</span>
 								<span className="text-md font-semibold text-black">
 									<a href="#"> Careers </a>

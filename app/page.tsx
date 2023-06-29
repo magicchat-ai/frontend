@@ -7,7 +7,7 @@ import Footer from './dashboard/footer'
 export default function Home() {
   return (
 		<main className="max-w-full bg-white w-screen overflow-x-clip">
-			<div className="sticky w-full top-0 transition-all py-1.5 md:py-0.5 duration-200 z-50 text-[#ffffff] bg-[#340464] w-screen">
+			<div className="sticky w-full top-0 transition-all py-1.5 md:py-0.5 duration-200 z-50 text-[#ffffff] bg-[#340464bc] backdrop-blur w-screen">
 				<div className="mx-auto sm:px-7 px-4 dark:text-white w-full ">
 					<div className="relative flex items-center justify-between py-3">
 						<div className="flex justify-start xl:flex-1">
@@ -73,7 +73,7 @@ export default function Home() {
 									<span> Home </span>
 								</button>
 							</div>
-							<a href="/about">
+							<a href="#about">
 								<div className="text-white hover:bg-white text-sm font-medium hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition flex items-center cursor-pointer">
 									About
 								</div>
@@ -82,15 +82,17 @@ export default function Home() {
 								className="relative sm:hidden lg:block"
 								data-headlessui-state=""
 							>
-								<button
-									className="text-white hover:bg-white md:inline-flex hidden items-center text-sm font-medium focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
-									type="button"
-									aria-expanded="false"
-									data-headlessui-state=""
-									id="headlessui-popover-button-:R1dl6:"
-								>
-									<span> Pricing </span>
-								</button>
+								<a href="#pricing">
+									<button
+										className="text-white hover:bg-white md:inline-flex hidden items-center text-sm font-medium focus:outline-none group  hover:bg-opacity-10 py-2 px-3 xl:px-3.5 rounded-full transition group"
+										type="button"
+										aria-expanded="false"
+										data-headlessui-state=""
+										id="headlessui-popover-button-:R1dl6:"
+									>
+										Pricing 
+									</button>
+								</a>
 							</div>
 						</nav>
 						<div className="items-center justify-end hidden space-x-3 md:flex lg:flex-1 lg:w-0 flex-nowrap">
@@ -107,7 +109,7 @@ export default function Home() {
 			</div>
 
 			<div
-				className="my-4 rounded-4xl -mt-16 md:-mt-32"
+				className="mt-4 rounded-4xl -mt-16 md:-mt-32"
 				style={{
 					background:
 						"radial-gradient(60.87% 39.84% at 63.16% 60.16%, #860B7A 0%, #340464 100%)",
@@ -169,17 +171,13 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center py-32 self-center gap-y-12 justify-self-center bg-white dark:text-black px-2">
-				<div className="flex flex-row font-bold leading-relaxed text-3xl px-4 mb-8 md:mb-6 md:text-4xl max-w-screen-md justify-center self-center content-center justify-items-center text-center">
+			<div className="flex flex-col items-center py-24 self-center gap-y-12 justify-self-center dark:text-black px-2 bg-[linear-gradient(180deg,_rgba(52,4,100,1),_rgba(0,0,214,0)_70.71%),linear-gradient(200deg,_rgba(7,9,130,1),_rgba(7,9,130,1)_70.71%),linear-gradient(336deg,_rgba(35,90,186,1),_rgba(35,90,186,1)_70.71%)]">
+				{/* @ts-expect-error */}
+				<a name="about"></a>
+				<div className="flex flex-row font-extrabold leading-relaxed text-3xl px-4 pb-8 mb-8 md:mb-6 md:text-4xl max-w-screen-md justify-center self-center content-center justify-items-center text-white text-center">	
 					Unleash Your Imagination with AI-Powered Avatar Talk!
 				</div>
-				<div
-					className="flex flex-row flex-wrap gap-x-12 gap-y-12 max-w-screen-lg self-center px-10 md:px-20 py-20 rounded-lg bg-black"
-					style={{
-						background:
-							"radial-gradient(85.14% 577.3% at 8.67% 46.68%, #1A16E2 0%, #031DA2 0%, #9732E6 45.18%, #9C0935 92.96%)",
-					}}
-				>
+				<div className="flex flex-row flex-wrap gap-x-12 gap-y-12 max-w-screen-lg self-center px-10 md:px-20 py-20 rounded-lg bg-[#C7C7C75A] backdrop-blur backdrop-brightness-10 border border-slate-300">
 					<div className="flex flex-col md:w-1/2 justify-between gap-y-12 flex-wrap min-w-[260px] max-w-[380px]">
 						<div className="flex flex-col gap-y-4">
 							<h2 className="flex text-white text-lg font-bold items-center gap-x-2">
@@ -197,7 +195,7 @@ export default function Home() {
 								</svg>
 								Meet your superheroes
 							</h2>
-							<p className="text-white">
+							<p className="font-light text-white">
 								Meet your legendary characters and superheroes come to life on
 								your screen! Prepare to embark on an unparalleled interactive
 								experience that will transport you into the world of your
@@ -220,7 +218,7 @@ export default function Home() {
 								</svg>
 								Engage in captivating conversations
 							</h2>
-							<p className="text-white">
+							<p className="font-light text-white">
 								Talk to beloved holiday figures like Santa Claus, and an array
 								of legendary characters from folklore and pop culture. Immerse
 								yourself in their fascinating stories, or simply enjoy a
@@ -228,7 +226,7 @@ export default function Home() {
 							</p>
 						</div>
 					</div>
-					<div className="flex flex-col w-1/2 justify-between gap-y-12 min-w-[260px] max-w-[380px] flex-wrap">
+					<div className="flex flex-col md:w-1/2 justify-between gap-y-12 flex-wrap min-w-[260px] max-w-[380px]">
 						<div className="flex flex-col gap-y-4">
 							<h2 className="flex text-white text-lg font-bold items-center gap-x-2">
 								<svg
@@ -245,7 +243,7 @@ export default function Home() {
 								</svg>
 								Interact with your heroes
 							</h2>
-							<p className="text-white">
+							<p className="text-white font-light">
 								Ask them burning questions, and discover hidden depths to their
 								personalities. Experience the thrill of engaging with your
 								favorite characters, as we bring them to life with stunning
@@ -268,15 +266,58 @@ export default function Home() {
 								</svg>
 								MagicChat is real magic!
 							</h2>
-							<p className="text-white">
-								MagicChat AI is a universe where imagination knows no bounds.
+							<p className="text-white font-light">
+								MagicChat is a universe where imagination knows no bounds.
 								Unleash your curiosity, connect with legendary figures, and
 								embark on extraordinary adventures, all with the power of
-								conversation like never before.
+								conversation like never before. Join to talk to your favorite 
+								characters with a free account now!
 							</p>
 						</div>
 					</div>
 				</div>
+			</div>
+
+			{/* @ts-expect-error */}
+			<a name="pricing"></a>
+			<div className="flex flex-col flex-wrap justify-center text-black dark:text-white gap-x-8 py-8 px-4 md:px-12 bg-[linear-gradient(0deg,_rgba(255,255,255,1),_rgba(0,0,255,0)_70.71%),linear-gradient(180deg,_rgba(7,9,130,1),_rgba(7,9,130,1)_70.71%)]">
+				<div className="flex flex-row gap-x-2 font-extrabold leading-relaxed text-3xl tracking-wide px-4 mb-8 md:mb-6 md:text-4xl max-w-screen-md justify-center self-center content-center justify-items-center text-center">	
+					A great experience is 
+					<span className="text-pink-500">priceless</span>
+				</div>
+				<div className="text-white max-w-xl items-center text-center my-6 font-light text-2xl self-center">
+					Versatile pricing solutions for everyone, so that your kids enjoy their time talking to superheroes,
+					and you not worrying about the bills.
+				</div>
+
+				<div className="self-center shadow shadow-slate-600 text-white px-6 py-10 max-w-sm my-6 rounded-lg bg-[linear-gradient(180deg,#0057ff,#8247ff)] flex flex-col">
+					<span className="font-bold">STANDARD PLAN</span>
+					<span className="font-thin pt-6 pb-2 flex flex-row gap-x-1">
+						<span className="font-semibold text-3xl">$3</span>
+						/ min
+					</span>
+					<span className="font-light pb-6">
+						Designed for enhanced and rich conversation between your kids and characters.
+					</span>
+
+					<span className="font-bold py-4">
+						What's included:
+					</span>
+					<ul className="font-light gap-y-1 flex flex-col list-disc px-4">
+						<li>Talk to any character at a flat rate.</li>
+						<li>Pay only for the text/voice generated, no time restrictions.</li>
+						<li>A dirt-cheap rate of $0.002921 per letter of text generated.</li>
+						<li>This price is indicative of a normal conversation, pay only per character.</li>
+					</ul>
+
+					<a href="/auth" className="self-center">
+						<button className="px-6 py-2 bg-white font-bold max-w-fit rounded-md self-center mt-8 text-black hover:bg-slate-100">
+							Signup Now
+						</button>
+					</a>
+
+				</div>
+
 			</div>
 
 			<div className="flex flex-col gap-y-6 justify-center py-8 px-8 bg-white dark:text-black">
@@ -286,8 +327,7 @@ export default function Home() {
 					height="6"
 					viewBox="0 0 50 6"
 					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
+					xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0_52_48)">
 						<path d="M0 0V5.14464H50C50 5.14464 27.3468 0 0 0Z" fill="black" />
 					</g>
@@ -305,7 +345,7 @@ export default function Home() {
 						</h2>
 						<a href="/auth" 
 							rel="noopener noreferrer">
-							<button className="flex px-8 py-4 text-white text-md bg-black rounded-md max-w-max flex-row gap-x-2 justify-center items-center hover:bg-[#1e1e1e]">
+							<button className="flex px-8 py-4 text-white text-md bg-black rounded-md max-w-max flex-row gap-x-2 justify-center items-center hover:bg-slate-700">
 								Start today
 								<svg
 									className="flex"
