@@ -76,8 +76,7 @@ const PopupModal = (props: PropsType) => {
 
 			<div className="flex flex-row justify-between flex-wrap gap-y-6">
 				<div className="flex flex-col w-full max-w-screen-md gap-y-4">
-					<Image alt={props.name} src={data?.image_url} className="py-6 px-2 self-center" width="700" height="300"/>
-
+					<Image alt={props.name} src={data?.image_url} className="py-6 px-2 self-center rounded-lg" width="700" height="300"/>
 					<div className="flex flex-col px-2">
 						<div className="flex flex-row justify-between flex-wrap gap-y-2">
 							<span className="flex text-grey text-sm">
@@ -94,7 +93,7 @@ const PopupModal = (props: PropsType) => {
 							</button>
 						</div>
 						<span className="flex w-56 text-sm text-[#1E1E1E] font-light">
-							applicable for the first 5 minutes, thereafter charged at $2/min.
+							estimated cost. see pricing page for more info.
 						</span>
 					</div>
 

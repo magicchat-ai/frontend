@@ -118,7 +118,7 @@ const Dashboard = () => {
 					<div className="flex text-2xl max-w-screen-lg flex-start dark:text-black">
 						Most Popular Characters
 					</div>
-					<div className="flex flex-row max-w-max gap-x-8 justify-between gap-y-6 flex-wrap">
+					<div className="flex flex-row max-w-max gap-x-8 gap-y-6 flex-wrap">
 						{/* @ts-expect-error */}
 						{(characterList?.length>0 && renderedCharacterList) || <span>Loading...</span>}
 					</div>
