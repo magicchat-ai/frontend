@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req: NextRequest) {
-  const user_id = 'OevcHlSP5sfpiEs0R5VBteOW6Ay2'
+  const body = await req.formData()
+  const user_id = body.get("user_id")
   try {
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
