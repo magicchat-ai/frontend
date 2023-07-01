@@ -301,7 +301,7 @@ export default function Home() {
 					</span>
 
 					<span className="font-bold py-4">
-						What's included:
+						What&apos;s included:
 					</span>
 					<ul className="font-light gap-y-1 flex flex-col list-disc px-4">
 						<li>Talk to any character at a flat rate.</li>
