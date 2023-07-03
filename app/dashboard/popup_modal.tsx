@@ -183,7 +183,7 @@ const PopupModal = (props: PropsType) => {
 				className="pt-20 w-full flex"
 			></div>
             {!(chat.name?.length>0) && <PopupModalComponent />}
-            {(chat.name?.length>0) && <ChatModal name={props.name} chat_cover_bg={data?.chat_cover_bg} first_response={data?.first_response} user_id={props.user_id} setChat={setChat}/>}
+            {(chat.name?.length>0) && <ChatModal uuid={props.uuid} name={props.name} chat_cover_bg={data?.chat_cover_bg} first_response={data?.first_response} user_id={props.user_id} setChat={setChat}/>}
 		</div>
 	);
 };

@@ -9,6 +9,7 @@ type PropsType = {
 	setChat: any,
     first_response: string | undefined,
     user_id: string | undefined,
+    uuid: string | undefined
 };
 
 const ChatModal = (props: PropsType) => {
@@ -16,7 +17,7 @@ const ChatModal = (props: PropsType) => {
         {'role': props.name, 'content': props.first_response}
     ]);
 
-	const bottomRef = React.useRef<HTMLDivElement>(null);
+	const bottomRef = React.useRef<HTMLDivElement>(null)
     const [messageTrigger, setMessageTrigger] = React.useState(1)
     const [prompt, setPrompt] = React.useState('')
 
@@ -28,7 +29,7 @@ const ChatModal = (props: PropsType) => {
           inline: 'nearest',
         })
     }, [messageTrigger]);
-    
+
     function handleTextChange(e: any) {
         e.target.style.height = "auto";
 
@@ -40,6 +41,33 @@ const ChatModal = (props: PropsType) => {
             e.target.style.overflowY = "scroll";
         }
         setPrompt(e.target.value)
+    }
+
+    async function handleAudioResponse(text: string | undefined) {
+        let response = await fetch('/api/speech', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'audio/mpeg'
+            },
+            body: JSON.stringify({
+                text_content: text,
+                user_id: props.user_id,
+                char_id: props.uuid
+            })
+        })
+        const arraybuffer = await response.text()
+        console.log(arraybuffer)
+        const oBlob = new Blob([arraybuffer], { type: 'audio/mpeg' })
+        const audioURL = window.URL.createObjectURL(oBlob)
+        const audio = new Audio()
+        audio.src = audioURL
+        audio.play()
+
+        return new Promise((resolve: any) => {
+            audio.addEventListener('ended', () => {
+              resolve()
+            })
+        })
     }
 
     async function handleSubmitPrompt(e: any) {
@@ -61,8 +89,8 @@ const ChatModal = (props: PropsType) => {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              'context': props.first_response,
-              'prompt': question,
+              context: props.first_response,
+              prompt: question,
                user_id: props.user_id,
             })
         });
@@ -71,8 +99,10 @@ const ChatModal = (props: PropsType) => {
         while (true) {
             // @ts-expect-error
             const { value, done } = await reader.read()
-            if (done) break
-            console.log(value)
+            if (done) {
+                handleAudioResponse(modifiedChat[modifiedChat.length - 1].content)
+                break
+            }
             modifiedChat[modifiedChat.length - 1].content += value
             setMessageTrigger((state: number) => -state)            
         }
@@ -114,6 +144,7 @@ const ChatModal = (props: PropsType) => {
 				<div className="flex gap-y-2 flex-col grow w-full max-w-prose items-center self-center justify-end py-4">
 					{renderedChatList}
 				</div>
+
 				<div className="flex flex-row">
 					<textarea 
                         rows={1} 
