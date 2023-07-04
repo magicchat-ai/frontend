@@ -55,33 +55,15 @@ const ChatModal = (props: PropsType) => {
                 char_id: props.uuid
             })
         })
-        var buffers:any
-        const arraybuffer = await response.text()
-        var blob = new Blob([arraybuffer],{type:'audio.mpeg'})
-        var reader = new FileReader()
-        reader.onload = function(evt: any) { buffers = evt.target.result}
-        reader.readAsArrayBuffer(blob)
-        
-        const context = new AudioContext()
-        const buffer = await context.decodeAudioData(buffers);
+
+        const bufferAudio:ArrayBuffer = await response.arrayBuffer()
+
+        const context:AudioContext = new AudioContext()
+        const buffer:AudioBuffer = await context.decodeAudioData(bufferAudio);
         const source = context.createBufferSource()
-        // @ts-ignore
         source.buffer = buffer
         source.connect(context.destination)
         source.start()
-
-        console.log(arraybuffer)
-        // const oBlob = new Blob([arraybuffer], { type: 'audio/mpeg' })
-        // const audioURL = window.URL.createObjectURL(oBlob)
-        // const audio = new Audio()
-        // audio.src = audioURL
-        // audio.play()
-
-        // return new Promise((resolve: any) => {
-        //     audio.addEventListener('ended', () => {
-        //       resolve()
-        //     })
-        // })
     }
 
     async function handleSubmitPrompt(e: any) {
