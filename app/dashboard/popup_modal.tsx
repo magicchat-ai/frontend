@@ -179,7 +179,7 @@ const PopupModal = (props: PropsType) => {
 
 	return (
 		<div className="fixed px-0 inset-0 h-full z-30 bg-[#6E6E6ED9] flex flex-col w-screen overflow-y-scroll">
-			{addingReview && <AddReview setAddingReview={setAddingReview} setModal={props.setModal}/>}
+			{addingReview && <AddReview setAddingReview={setAddingReview} user_id={props.user_id} setModal={props.setModal}/>}
 			<div
 				onClick={() => handleMinimizeModal()}
 				className="pt-20 w-full flex"
