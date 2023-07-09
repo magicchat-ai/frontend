@@ -2,31 +2,31 @@
 export const runtime = "edge"
 
 export async function POST(req: Request): Promise<Response> {
-    const { text_content, user_id, char_id } = (await req.json()) as {
+    const { text_content, user_id, voice_id } = (await req.json()) as {
       text_content: string
       user_id: string
-      char_id?: string
+      voice_id: string
     }
     
     // query the account balance first
     let subs_balance = 0
-    // const subs = await fetch(`https://magicchat-api.onrender.com/get-subs?user_id=${user_id}`, {
-    //   method: 'GET',
-    //   headers: {"Content-Type": "application/json"},
-    // })
-    // .then((res) => res.json())
-    // .then((data) => subs_balance = data.data)
+    const subs = await fetch(`https://magicchat-api.onrender.com/get-subs?user_id=${user_id}`, {
+      method: 'GET',
+      headers: {"Content-Type": "application/json"},
+    })
+    .then((res) => res.json())
+    .then((data) => subs_balance = data.data)
 
     // if subscription is in negative or zero
-    // if(subs <= 0) {
-    //   return new Response("ZeroBalance. Please recharge to enjoy services", {
-    //     status: 400,
-    //     headers: {
-    //       "content-type": "text/plain",
-    //       "Cache-Control": "no-cache",
-    //     }
-    //   })
-    // } 
+    if(subs <= 0) {
+      return new Response("ZeroBalance. Please recharge to enjoy services", {
+        status: 400,
+        headers: {
+          "content-type": "text/plain",
+          "Cache-Control": "no-cache",
+        }
+      })
+    } 
 
     const requestBody = {
         text: text_content,
@@ -37,7 +37,7 @@ export async function POST(req: Request): Promise<Response> {
         }
     }
 
-    const res:any = await fetch('https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM/stream?optimize_streaming_latency=0', {
+    const res:any = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream?optimize_streaming_latency=0`, {
         method: 'POST',
         headers: {
             'accept': '*/*',

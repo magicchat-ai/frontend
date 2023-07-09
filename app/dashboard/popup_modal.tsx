@@ -30,6 +30,7 @@ type IDataType = {
 	image_url: any,
 	chat_cover_bg: string,
 	first_response: string,
+	voice_id: string | undefined,
 }
 
 const PopupModal = (props: PropsType) => {
@@ -51,6 +52,7 @@ const PopupModal = (props: PropsType) => {
 				'image_url': docSnap.data()?.image_url,
 				'chat_cover_bg': docSnap.data()?.chat_cover_bg,
 				'first_response': docSnap.data()?.first_response,
+				'voice_id': docSnap.data()?.voice_id,
 			}
 			
 			setData(newDocData)
@@ -183,7 +185,7 @@ const PopupModal = (props: PropsType) => {
 				className="pt-20 w-full flex"
 			></div>
             {!(chat.name?.length>0) && <PopupModalComponent />}
-            {(chat.name?.length>0) && <ChatModal uuid={props.uuid} name={props.name} chat_cover_bg={data?.chat_cover_bg} first_response={data?.first_response} user_id={props.user_id} setChat={setChat}/>}
+            {(chat.name?.length>0) && <ChatModal uuid={props.uuid} voice_id={data?.voice_id} name={props.name} chat_cover_bg={data?.chat_cover_bg} first_response={data?.first_response} user_id={props.user_id} setChat={setChat}/>}
 		</div>
 	);
 };

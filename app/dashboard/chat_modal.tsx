@@ -10,6 +10,7 @@ type PropsType = {
     first_response: string | undefined,
     user_id: string | undefined,
     uuid: string | undefined
+    voice_id: string | undefined
 };
 
 const ChatModal = (props: PropsType) => {
@@ -52,7 +53,7 @@ const ChatModal = (props: PropsType) => {
             body: JSON.stringify({
                 text_content: text,
                 user_id: props.user_id,
-                char_id: props.uuid
+                voice_id: props.voice_id
             })
         })
 
