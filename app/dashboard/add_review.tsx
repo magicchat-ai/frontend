@@ -5,16 +5,21 @@ import { addDoc, collection } from "firebase/firestore"
 type IPropsType = {
     user_id: string | undefined,
     setAddingReview: React.Dispatch<boolean>,
-    setModal: any
+    setModal: any,
+    char_id: string | undefined
 }
 
 async function handleSubmitReview(e: any, props: IPropsType, comment: string | undefined) {
     if(!comment?.trim().length) return
 
+    e.target.setAttribute("disabled", "true")
+    e.target.style.backgroundColor = 'grey'
+
     await addDoc(collection(db, 'reviews'), {
         content: comment,
         time: new Date(),
         user_id: props.user_id,
+        char_id: props.char_id
     })
 
     props.setModal({})
